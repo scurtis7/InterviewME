@@ -4,5 +4,5 @@ This is a Spring Boot application with an Angular front end.  The application wi
 
 That's the goal anyway.  :)
 
-[https://img.shields.io/badge/mac%20os-000000?style=for-the-badge&logo=apple&logoColor=white]
+[![Mac OS](https://img.shields.io/badge/mac%20os-000000?style=for-the-badge&logo=apple&logoColor=white)](#)
 
