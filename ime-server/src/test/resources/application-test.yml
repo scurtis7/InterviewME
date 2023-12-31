@@ -1,0 +1,11 @@
+# Application test properties
+
+spring:
+  datasource:
+    url: r2dbc:h2:mem://./testDb
+    username: sa
+    password: sa
+  r2dbc:
+    url: r2dbc:h2:mem://./testDb
+    username: sa
+    password: sa
