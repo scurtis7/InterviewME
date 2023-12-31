@@ -2,5 +2,5 @@
 
 This is a Spring Boot application with an Angular front end.  The application will quiz you with typical interview questions on various topics.
 
-That's the anyway.  :)
+That's the goal anyway.  :)
 
