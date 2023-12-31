@@ -1,13 +1,16 @@
-![Build & Test](https://github.com/scurtis7/recruits/workflows/Build%20&%20Test/badge.svg)
-
 # InterviewME Server
 
 The InterviewME Server will handle all backend processing for the InterviewME front end UI. This
 is a spring boot application using a postgresql database using R2DBC and reactive io.
 
-### Stack
+### Technologies
 
 The InterviewME Service is built on top of a few core technologies:
+
+![Spring Boot Badge](https://img.shields.io/badge/Spring%20Boot-6DB33F?logo=springboot&logoColor=white&style=plastic)
+![Java](https://img.shields.io/badge/Java-ED8B00?style=plastic&logo=java&logoColor=white)
+![Apache Maven Badge](https://img.shields.io/badge/Apache%20Maven-C71A36?logo=apachemaven&logoColor=white&style=plastic)
+![IntelliJ IDEA Badge](https://img.shields.io/badge/IntelliJ%20IDEA-000?logo=intellijidea&logoColor=white&style=plastic)
 
 * Java 17
 * [Maven](https://maven.apache.org) (3.0.0+)
@@ -99,8 +102,6 @@ spring:
 - In the terminal from the root folder (.../ime-server) you run the following command:
 
 `java -jar -Dspring.profiles.active=local target/ime-server-0.0.1.jar`
-
-- navigate to [http://localhost:8080](http://localhost:8080)
 
 **NOTE:** You can also build and run the application from IntelliJ
 
