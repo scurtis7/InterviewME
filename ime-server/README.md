@@ -13,7 +13,7 @@ The InterviewME Service is built on top of a few core technologies:
 ![IntelliJ IDEA Badge](https://img.shields.io/badge/IntelliJ%20IDEA-000?logo=intellijidea&logoColor=white&style=plastic)
 
 * Java 17
-* [Maven](https://maven.apache.org) (3.0.0+)
+* [Maven](https://maven.apache.org) (3.9)
 * [Spring Boot](https://spring.io/projects/spring-boot) (3.2.1)
 * [Spring Reactive Web](https://docs.spring.io/spring-boot/docs/3.2.1/reference/htmlsingle/index.html#web.reactive)
 * [Spring Data R2DBC](https://docs.spring.io/spring-boot/docs/3.2.1/reference/htmlsingle/index.html#data.sql.r2dbc)
