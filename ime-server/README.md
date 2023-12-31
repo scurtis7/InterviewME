@@ -104,22 +104,3 @@ spring:
 
 **NOTE:** You can also build and run the application from IntelliJ
 
-# # # # # # # # # # # # # # # # 
-
-To Do List
-
-- ~~Write explanation for starting a local postgresql database~~
-- ~~Figure out the connection string for the postgresql database for the application-local file~~
-- ~~Configure h2 database for context loads test~~
-- ~~Modify the steps to build and run below~~
-- Add tests and code coverage
-- Initialize the git repository
-- Upload the repository to GitHub
-- Fix "build and test" badge below
-- Add Flyway support for creating/updating database:
-    - https://medium.com/hprog99/set-up-flyway-with-spring-boot-1b24b8abe56e
-    - https://www.baeldung.com/database-migrations-with-flyway
-- Add OAuth support: https://thomasandolf.medium.com/spring-security-jwts-getting-started-ebdb4e4f1dd1
--
-
-# # # # # # # # # # # # # # # # 

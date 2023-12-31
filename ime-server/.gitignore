@@ -37,4 +37,5 @@ build/
 
 ### Miscellaneous ###
 HELP.md
+TODO.md
 /src/main/resources/application-local.yml
