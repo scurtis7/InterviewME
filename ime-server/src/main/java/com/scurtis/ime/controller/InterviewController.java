@@ -20,7 +20,7 @@ import reactor.core.publisher.Mono;
 @RequestMapping("ime")
 public class InterviewController {
 
-    public final CategoryService categoryService;
+    private final CategoryService categoryService;
 
     @PostMapping(path = "category")
     public Mono<Category> addCategory(@RequestBody Category category) {
