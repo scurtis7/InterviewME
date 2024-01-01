@@ -11,18 +11,14 @@ import static org.springframework.util.Assert.hasText;
 @Getter
 @Setter
 @Configuration
-@ConfigurationProperties(prefix = "spring.r2dbc")
-public class PostgresR2dbc {
+@ConfigurationProperties(prefix = "spring.flyway")
+public class FlywayProperties {
 
     private String url;
-    private String username;
-    private String password;
 
     @PostConstruct
     public void postConstruct() {
-        hasText(url, "spring.r2dbc.url property must be set");
-        hasText(username, "spring.r2dbc.username property must be set");
-        hasText(password, "spring.r2dbc.password property must be set");
+        hasText(url, "spring.flyway.url property must be set");
     }
 
 }

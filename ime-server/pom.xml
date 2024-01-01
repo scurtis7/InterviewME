@@ -12,11 +12,12 @@
     <artifactId>ime-server</artifactId>
     <version>0.0.1</version>
     <name>ime-server</name>
-    <description>Spring Boot service to support Interview Me application</description>
+    <description>Spring Boot service to support InterviewMe application</description>
 
     <properties>
         <java.version>17</java.version>
-        <postgresql.version>1.0.3.RELEASE</postgresql.version>
+        <postgresql.r2dbc.version>1.0.3.RELEASE</postgresql.r2dbc.version>
+        <postgresql.jdbc.version>42.7.1</postgresql.jdbc.version>
         <h2database.version>2.2.222</h2database.version>
         <checkstyle.plugin.version>3.3.0</checkstyle.plugin.version>
         <checkstyle.version>9.3</checkstyle.version>
@@ -30,22 +31,17 @@
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-jpa</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-r2dbc</artifactId>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/org.postgresql/postgresql -->
         <dependency>
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
-            <version>42.7.1</version>
+            <version>${postgresql.jdbc.version}</version>
         </dependency>
         <dependency>
             <groupId>org.postgresql</groupId>
             <artifactId>r2dbc-postgresql</artifactId>
-            <version>${postgresql.version}</version>
+            <version>${postgresql.r2dbc.version}</version>
         </dependency>
         <dependency>
             <groupId>org.flywaydb</groupId>
@@ -123,6 +119,7 @@
                             <excludes>
                                 <exclude>com/scurtis/ime/Application.class</exclude>
                                 <exclude>com/scurtis/ime/config/*</exclude>
+                                <exclude>com/scurtis/ime/entity/*</exclude>
                             </excludes>
                         </configuration>
                     </execution>
@@ -136,6 +133,7 @@
                             <excludes>
                                 <exclude>com/scurtis/ime/Application.class</exclude>
                                 <exclude>com/scurtis/ime/config/*</exclude>
+                                <exclude>com/scurtis/ime/entity/*</exclude>
                             </excludes>
                             <rules>
                                 <rule>

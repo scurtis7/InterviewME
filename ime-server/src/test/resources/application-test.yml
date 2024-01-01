@@ -1,12 +1,9 @@
 # Application test properties
 
 spring:
-  datasource:
-    url: jdbc:h2:mem:testDb
-    username: sa
-    password: sa
-    driver-class-name: org.h2.Driver
   r2dbc:
     url: r2dbc:h2:mem://./testDb
     username: sa
     password: sa
+  flyway:
+    url: jdbc:h2:mem://./testDb

@@ -9,8 +9,13 @@ The InterviewME Service is built on top of a few core technologies:
 
 ![Spring Boot Badge](https://img.shields.io/badge/Spring%20Boot-6DB33F?logo=springboot&logoColor=white&style=plastic)
 ![Java](https://img.shields.io/badge/Java-ED8B00?style=plastic&logo=java&logoColor=white)
+![PostgreSQL Badge](https://img.shields.io/badge/PostgreSQL-4169E1?logo=postgresql&logoColor=white&style=plastic)
+![Flyway Badge](https://img.shields.io/badge/Flyway-CC0200?logo=flyway&logoColor=white&style=plastic)
 ![Apache Maven Badge](https://img.shields.io/badge/Apache%20Maven-C71A36?logo=apachemaven&logoColor=white&style=plastic)
 ![IntelliJ IDEA Badge](https://img.shields.io/badge/IntelliJ%20IDEA-000?logo=intellijidea&logoColor=white&style=plastic)
+![Git Badge](https://img.shields.io/badge/Git-F05032?logo=git&logoColor=fff&style=plastic)
+![GitHub Badge](https://img.shields.io/badge/GitHub-181717?logo=github&logoColor=fff&style=plastic)
+![Markdown Badge](https://img.shields.io/badge/Markdown-000?logo=markdown&logoColor=fff&style=plastic)
 
 * Java 17
 * [Maven](https://maven.apache.org) (3.9)
@@ -40,14 +45,12 @@ To run all the commands at once:
 
 In order to run the Service the following environment variables must be set:
 
-| VARIABLE                   | Description                                                                               |
-|:---------------------------|:------------------------------------------------------------------------------------------|
-| SPRING_DATASOURCE_URL      | URL of the jdbc database including the databaseName.  This connection is used for Flyway. |
-| SPRING_DATASOURCE_USERNAME | Jdbc Database username                                                                    |
-| SPRING_DATASOURCE_PASSWORD | Jdbc database password                                                                    |
-| SPRING_R2DBC_URL           | URL of the r2dbc database including the databaseName                                      |
-| SPRING_R2DBC_USERNAME      | R2dbc database username                                                                   |
-| SPRING_R2DBC_PASSWORD      | R2dbc database password                                                                   |
+| VARIABLE              | Description                                                        |
+|:----------------------|:-------------------------------------------------------------------|
+| SPRING_R2DBC_URL      | URL of the r2dbc database including the databaseName               |
+| SPRING_R2DBC_USERNAME | R2dbc database username                                            |
+| SPRING_R2DBC_PASSWORD | R2dbc database password                                            |
+| SPRING_FLYWAY_URL     | Jdbc URL including the databaseName.  This url is used for Flyway. |
 
 ## How to run locally
 
@@ -74,7 +77,7 @@ Next build the Spring Boot application with these steps:
 First you will need to create a file called `application-local.yml` in the `src/main/resources`
 folder. It needs to contain something like the following. The important parts are the spring
 configuration properties. Replace `<password>` with your password. This file is ignored in
-the `.gitignore` so we can keep our passwords secure.
+the `.gitignore` so we can keep our passwords secure.  The logging configuration is optional.
 
 ```
 # Application local properties
@@ -89,17 +92,15 @@ logging:
           r2dbc: DEBUG
 
 spring:
-  datasource:
-    url: jdbc:postgresql://localhost:5432/imeDb
-    username: postgres
-    password: <password>
   r2dbc:
     url: r2dbc:postgresql://localhost:5432/imeDb
     username: postgres
     password: <password>
+  flyway:
+    url: jdbc:postgresql://localhost:5432/postgres
 ```
 
-- In the terminal from the root folder (.../ime-server) you run the following command:
+- In the terminal from the server folder (.../ime-server) you can run the following command:
 
 `java -jar -Dspring.profiles.active=local target/ime-server-0.0.1.jar`
 
