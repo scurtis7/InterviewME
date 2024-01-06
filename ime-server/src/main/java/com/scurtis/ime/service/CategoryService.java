@@ -14,7 +14,8 @@ public class CategoryService {
 
     private final CategoryRepository repository;
 
-    public Mono<Category> saveCategory(Category category) {
+    public Mono<Category> addCategory(Category category) {
+        log.info("CategoryService.addCategory()   {}", category.toString());
         return repository.save(category);
     }
 

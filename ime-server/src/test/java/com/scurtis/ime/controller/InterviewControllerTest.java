@@ -32,7 +32,7 @@ class InterviewControllerTest {
         Category body = getCategory();
         Mono<Category> monoCategory = Mono.just(body);
 
-        when(categoryService.saveCategory(body)).thenReturn(monoCategory);
+        when(categoryService.addCategory(body)).thenReturn(monoCategory);
 
         webTestClient.post().uri("/ime/category")
             .accept(MediaType.APPLICATION_JSON)
@@ -41,7 +41,7 @@ class InterviewControllerTest {
             .expectStatus().isOk()
             .expectBody(Category.class);
 
-        verify(categoryService).saveCategory(body);
+        verify(categoryService).addCategory(body);
     }
 
     private Category getCategory() {

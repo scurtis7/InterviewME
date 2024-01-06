@@ -42,7 +42,7 @@ class CategoryServiceTest {
 
         when(categoryRepository.save(category)).thenReturn(Mono.just(category));
 
-        Mono<Category> result = categoryService.saveCategory(category);
+        Mono<Category> result = categoryService.addCategory(category);
 
         StepVerifier.create(result)
             .thenConsumeWhile(r -> {
@@ -52,7 +52,7 @@ class CategoryServiceTest {
             .verifyComplete();
 
         verify(categoryRepository).save(category);
-        verify(categoryService).saveCategory(category);
+        verify(categoryService).addCategory(category);
     }
 
     private Category getCategory() {
