@@ -14,6 +14,14 @@ public class Category implements Persistable<Long> {
     private Long id;
     private String name;
 
+    /**
+     * This method is called by the R2DBC persistence framework to determine
+     * if it's a new category or existing category.  If new then an insert
+     * is done otherwise an update statement is executed.  This is the only
+     * way the framework can know which statement to use and is hence required.
+     *
+     * @return true if this is a new category otherwise false
+     */
     @Override
     @Transient
     public boolean isNew() {

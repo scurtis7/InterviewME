@@ -43,16 +43,12 @@
             <artifactId>r2dbc-postgresql</artifactId>
             <version>${postgresql.r2dbc.version}</version>
         </dependency>
-<!--        <dependency>-->
-<!--            <groupId>org.flywaydb</groupId>-->
-<!--            <artifactId>flyway-core</artifactId>-->
-<!--        </dependency>-->
 
-<!--        <dependency>-->
-<!--            <groupId>name.nkonev.r2dbc-migrate</groupId>-->
-<!--            <artifactId>r2dbc-migrate-spring-boot-starter</artifactId>-->
-<!--            <version>2.10.3</version>-->
-<!--        </dependency>-->
+        <dependency>
+            <groupId>name.nkonev.r2dbc-migrate</groupId>
+            <artifactId>r2dbc-migrate-spring-boot-starter</artifactId>
+            <version>2.10.3</version>
+        </dependency>
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
