@@ -9,7 +9,7 @@ CREATE TABLE ime.category (
 CREATE TABLE ime.question_answer (
     id SERIAL PRIMARY KEY,
     category INTEGER REFERENCES ime.category,
-    question VARCHAR(255) NOT NULL,
-    answer VARCHAR(255) NOT NULL,
+    question VARCHAR(512) NOT NULL,
+    answer VARCHAR(512) NOT NULL,
     create_date DATE DEFAULT CURRENT_DATE
 );
