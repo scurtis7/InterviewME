@@ -1,9 +1,11 @@
 package com.scurtis.ime.service;
 
 import com.scurtis.ime.converter.CategoryConverter;
+import com.scurtis.ime.converter.SkillLevelConverter;
 import com.scurtis.ime.dto.CategoryDto;
 import com.scurtis.ime.entity.Category;
 import com.scurtis.ime.repository.CategoryRepository;
+import com.scurtis.ime.repository.SkillLevelRepository;
 import java.time.LocalDate;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -26,20 +28,23 @@ class InterviewServiceTest {
     private InterviewService interviewService;
 
     @Mock
-    private CategoryRepository mockRepository;
-
+    private CategoryRepository mockCategoryRepository;
     @Mock
-    private CategoryConverter mockConverter;
+    private CategoryConverter mockCategoryConverter;
+    @Mock
+    private SkillLevelRepository mockSkillLevelRepository;
+    @Mock
+    private SkillLevelConverter mockSkillLevelConverter;
 
     @BeforeEach
     void beforeEach() {
-        interviewService = spy(new InterviewService(mockRepository, mockConverter));
+        interviewService = spy(new InterviewService(mockCategoryRepository, mockCategoryConverter, mockSkillLevelRepository, mockSkillLevelConverter));
     }
 
     @AfterEach
     void afterEach() {
-        verifyNoMoreInteractions(mockRepository);
-        verifyNoMoreInteractions(mockConverter);
+        verifyNoMoreInteractions(mockCategoryRepository);
+        verifyNoMoreInteractions(mockCategoryConverter);
         verifyNoMoreInteractions(interviewService);
     }
 
@@ -48,9 +53,9 @@ class InterviewServiceTest {
         Category entity = getEntity();
         CategoryDto dto = getDto();
 
-        when(mockRepository.save(entity)).thenReturn(Mono.just(entity));
-        when(mockConverter.toEntity(dto)).thenReturn(entity);
-        when(mockConverter.toDto(entity)).thenReturn(dto);
+        when(mockCategoryRepository.save(entity)).thenReturn(Mono.just(entity));
+        when(mockCategoryConverter.toEntity(dto)).thenReturn(entity);
+        when(mockCategoryConverter.toDto(entity)).thenReturn(dto);
 
         Mono<CategoryDto> result = interviewService.addCategory(dto);
 
@@ -61,9 +66,9 @@ class InterviewServiceTest {
             })
             .verifyComplete();
 
-        verify(mockRepository).save(entity);
-        verify(mockConverter).toEntity(dto);
-        verify(mockConverter).toDto(entity);
+        verify(mockCategoryRepository).save(entity);
+        verify(mockCategoryConverter).toEntity(dto);
+        verify(mockCategoryConverter).toDto(entity);
         verify(interviewService).addCategory(dto);
     }
 

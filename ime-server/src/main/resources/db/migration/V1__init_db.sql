@@ -6,7 +6,7 @@ CREATE TABLE ime.category (
     created_date DATE DEFAULT CURRENT_DATE
 );
 
-CREATE TABLE ime.skill (
+CREATE TABLE ime.skill_level (
     id SERIAL PRIMARY KEY,
     name VARCHAR(8) UNIQUE NOT NULL,
     created_date DATE DEFAULT CURRENT_DATE
@@ -21,5 +21,5 @@ CREATE TABLE ime.question (
     created_date DATE DEFAULT CURRENT_DATE
 );
 
-INSERT INTO ime.skill(name) VALUES ('Easy'), ('Medium'), ('Hard');
+INSERT INTO ime.skill_level(name) VALUES ('Easy'), ('Medium'), ('Hard');
 INSERT INTO ime.category(name) VALUES ('Java'), ('JavaScript'), ('Spring'), ('Spring Boot'), ('SQL');

@@ -1,6 +1,7 @@
 package com.scurtis.ime.controller;
 
 import com.scurtis.ime.dto.CategoryDto;
+import com.scurtis.ime.dto.SkillLevelDto;
 import com.scurtis.ime.service.InterviewService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -16,21 +17,27 @@ import reactor.core.publisher.Mono;
 @Slf4j
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("ime/category")
+@RequestMapping("ime")
 public class InterviewController {
 
-    private final InterviewService service;
+    private final InterviewService interviewService;
 
-    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(path = "category", consumes = MediaType.APPLICATION_JSON_VALUE)
     public Mono<CategoryDto> addCategory(@RequestBody CategoryDto dto) {
         log.info("InterviewController.addCategory()   {}", dto.toString());
-        return service.addCategory(dto);
+        return interviewService.addCategory(dto);
     }
 
-    @GetMapping()
+    @GetMapping(path = "category")
     public Flux<CategoryDto> getAllCategories() {
         log.info("InterviewController.getAllCategories()");
-        return service.getAllCategories();
+        return interviewService.getAllCategories();
+    }
+
+    @GetMapping(path = "skill_level")
+    public Flux<SkillLevelDto> getAllSkillLevels() {
+        log.info("InterviewController.getAllSkillLevels()");
+        return interviewService.getAllSkillLevels();
     }
 
 }
