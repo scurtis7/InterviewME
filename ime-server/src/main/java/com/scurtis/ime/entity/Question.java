@@ -14,21 +14,24 @@ import org.springframework.data.relational.core.mapping.Table;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@Table(schema = "ime", name = "category")
-public class Category implements Persistable<Long> {
+@Table(schema = "ime", name = "question")
+public class Question implements Persistable<Long> {
 
     @Id
     private Long id;
-    private String name;
+    private String question;
+    private String answer;
+    private String skill;
+    private String category;
     private LocalDate createdDate;
 
     /**
      * This method is called by the R2DBC persistence framework to determine
-     * if it's a new category or existing category.  If new then an insert
+     * if it's a new question or existing question.  If new then an insert
      * is done otherwise an update statement is executed.  This is the only
      * way the framework can know which statement to use and is hence required.
      *
-     * @return true if this is a new category otherwise false
+     * @return true if this is a new question otherwise false
      */
     @Override
     @Transient

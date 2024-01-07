@@ -7,8 +7,15 @@ import org.springframework.stereotype.Service;
 @Service
 public class CategoryConverter {
 
-    public CategoryDto toDto(Category category) {
-        return new CategoryDto(category.getId(), category.getName(), category.getCreatedDate());
+    public CategoryDto toDto(Category entity) {
+        return new CategoryDto(entity.getId(), entity.getName(), entity.getCreatedDate());
+    }
+
+    public Category toEntity(CategoryDto dto) {
+        return Category.builder()
+            .id(dto.getId())
+            .name(dto.getName())
+            .build();
     }
 
 }

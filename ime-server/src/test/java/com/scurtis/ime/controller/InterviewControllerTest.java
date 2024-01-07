@@ -1,7 +1,9 @@
 package com.scurtis.ime.controller;
 
+import com.scurtis.ime.dto.CategoryDto;
 import com.scurtis.ime.entity.Category;
 import com.scurtis.ime.service.CategoryService;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +16,7 @@ import org.springframework.test.web.reactive.server.WebTestClient;
 import reactor.core.publisher.Mono;
 
 import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.verifyNoMoreInteractions;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(SpringExtension.class)
@@ -27,10 +30,15 @@ class InterviewControllerTest {
     @Autowired
     private WebTestClient webTestClient;
 
+    @AfterEach
+    void afterEach() {
+        verifyNoMoreInteractions(categoryService);
+    }
+
     @Test
     void addCategorySuccess() {
-        Category body = getCategory();
-        Mono<Category> monoCategory = Mono.just(body);
+        CategoryDto body = getCategory();
+        Mono<CategoryDto> monoCategory = Mono.just(body);
 
         when(categoryService.addCategory(body)).thenReturn(monoCategory);
 
@@ -44,10 +52,8 @@ class InterviewControllerTest {
         verify(categoryService).addCategory(body);
     }
 
-    private Category getCategory() {
-        Category category = new Category();
-        category.setName("name");
-        return category;
+    private CategoryDto getCategory() {
+        return new CategoryDto(null, "name", null);
     }
 
 }

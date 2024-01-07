@@ -6,10 +6,20 @@ CREATE TABLE ime.category (
     created_date DATE DEFAULT CURRENT_DATE
 );
 
-CREATE TABLE ime.question_answer (
+CREATE TABLE ime.skill (
     id SERIAL PRIMARY KEY,
-    category INTEGER REFERENCES ime.category,
+    name VARCHAR(8) UNIQUE NOT NULL,
+    created_date DATE DEFAULT CURRENT_DATE
+);
+
+CREATE TABLE ime.question (
+    id SERIAL PRIMARY KEY,
+    category VARCHAR(64) NOT NULL,
+    skill VARCHAR(8) NOT NULL,
     question VARCHAR(512) NOT NULL,
     answer VARCHAR(512) NOT NULL,
     created_date DATE DEFAULT CURRENT_DATE
 );
+
+INSERT INTO ime.skill(name) VALUES ('Easy'), ('Medium'), ('Hard');
+INSERT INTO ime.category(name) VALUES ('Java'), ('JavaScript'), ('Spring'), ('Spring Boot'), ('SQL');

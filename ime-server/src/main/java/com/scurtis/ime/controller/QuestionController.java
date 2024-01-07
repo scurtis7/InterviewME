@@ -1,7 +1,7 @@
 package com.scurtis.ime.controller;
 
-import com.scurtis.ime.dto.CategoryDto;
-import com.scurtis.ime.service.CategoryService;
+import com.scurtis.ime.dto.QuestionDto;
+import com.scurtis.ime.service.QuestionService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.MediaType;
@@ -16,21 +16,21 @@ import reactor.core.publisher.Mono;
 @Slf4j
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("ime/category")
-public class InterviewController {
+@RequestMapping("ime/question")
+public class QuestionController {
 
-    private final CategoryService service;
+    private final QuestionService service;
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public Mono<CategoryDto> addCategory(@RequestBody CategoryDto dto) {
-        log.info("InterviewController.addCategory()   {}", dto.toString());
-        return service.addCategory(dto);
+    public Mono<QuestionDto> addQuestion(@RequestBody QuestionDto dto) {
+        log.info("QuestionController.addQuestion()   {}", dto.toString());
+        return service.addQuestion(dto);
     }
 
     @GetMapping()
-    public Flux<CategoryDto> getAllCategories() {
-        log.info("InterviewController.getAllCategories()");
-        return service.getAllCategories();
+    public Flux<QuestionDto> getAllQuestions() {
+        log.info("QuestionController.getAllQuestions()");
+        return service.getAllQuestions();
     }
 
 }

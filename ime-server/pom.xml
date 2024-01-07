@@ -121,6 +121,7 @@
                             <excludes>
                                 <exclude>com/scurtis/ime/Application.class</exclude>
                                 <exclude>com/scurtis/ime/config/*</exclude>
+                                <exclude>com/scurtis/ime/dto/*</exclude>
                                 <exclude>com/scurtis/ime/entity/*</exclude>
                             </excludes>
                         </configuration>
@@ -135,6 +136,7 @@
                             <excludes>
                                 <exclude>com/scurtis/ime/Application.class</exclude>
                                 <exclude>com/scurtis/ime/config/*</exclude>
+                                <exclude>com/scurtis/ime/dto/*</exclude>
                                 <exclude>com/scurtis/ime/entity/*</exclude>
                             </excludes>
                             <rules>
