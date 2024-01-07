@@ -1,15 +1,15 @@
 package com.scurtis.ime.controller;
 
 import com.scurtis.ime.dto.CategoryDto;
-import com.scurtis.ime.entity.Category;
+import com.scurtis.ime.dto.SkillLevelDto;
 import com.scurtis.ime.service.InterviewService;
+import java.time.LocalDate;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.reactive.WebFluxTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.context.annotation.Import;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.reactive.server.WebTestClient;
@@ -21,39 +21,59 @@ import static org.mockito.Mockito.when;
 
 @ExtendWith(SpringExtension.class)
 @WebFluxTest(controllers = InterviewController.class)
-@Import(InterviewService.class)
 class InterviewControllerTest {
 
     @MockBean
-    private InterviewService interviewService;
+    private InterviewService mockInterviewService;
 
     @Autowired
     private WebTestClient webTestClient;
 
     @AfterEach
     void afterEach() {
-        verifyNoMoreInteractions(interviewService);
+        verifyNoMoreInteractions(mockInterviewService);
     }
 
     @Test
-    void addCategorySuccess() {
-        CategoryDto body = getCategory();
-        Mono<CategoryDto> monoCategory = Mono.just(body);
+    void testAddCategorySuccess() {
+        CategoryDto body = getCategoryDto();
+        Mono<CategoryDto> monoCategoryDto = Mono.just(body);
 
-        when(interviewService.addCategory(body)).thenReturn(monoCategory);
+        when(mockInterviewService.addCategory(body)).thenReturn(monoCategoryDto);
 
         webTestClient.post().uri("/ime/category")
             .accept(MediaType.APPLICATION_JSON)
             .bodyValue(body)
             .exchange()
             .expectStatus().isOk()
-            .expectBody(Category.class);
+            .expectBody(CategoryDto.class)
+            .isEqualTo(body);
 
-        verify(interviewService).addCategory(body);
+        verify(mockInterviewService).addCategory(body);
     }
 
-    private CategoryDto getCategory() {
-        return new CategoryDto(null, "name", null);
+    @Test
+    void testGetAllCategoriesSuccess() {
+        webTestClient.get().uri("/ime/category")
+            .exchange()
+            .expectStatus().isOk()
+            .expectBodyList(CategoryDto.class);
+
+        verify(mockInterviewService).getAllCategories();
+    }
+
+    @Test
+    void testGetAllSkillLevelsSuccess() {
+        webTestClient.get().uri("/ime/skill_level")
+            .exchange()
+            .expectStatus().isOk()
+            .expectBodyList(SkillLevelDto.class);
+
+        verify(mockInterviewService).getAllSkillLevels();
+    }
+
+    private CategoryDto getCategoryDto() {
+        return new CategoryDto(1L, "name", LocalDate.now());
     }
 
 }
