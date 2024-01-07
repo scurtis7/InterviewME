@@ -21,9 +21,9 @@ import static org.mockito.Mockito.verifyNoMoreInteractions;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(SpringExtension.class)
-class CategoryServiceTest {
+class InterviewServiceTest {
 
-    private CategoryService categoryService;
+    private InterviewService interviewService;
 
     @Mock
     private CategoryRepository mockRepository;
@@ -33,14 +33,14 @@ class CategoryServiceTest {
 
     @BeforeEach
     void beforeEach() {
-        categoryService = spy(new CategoryService(mockRepository, mockConverter));
+        interviewService = spy(new InterviewService(mockRepository, mockConverter));
     }
 
     @AfterEach
     void afterEach() {
         verifyNoMoreInteractions(mockRepository);
         verifyNoMoreInteractions(mockConverter);
-        verifyNoMoreInteractions(categoryService);
+        verifyNoMoreInteractions(interviewService);
     }
 
     @Test
@@ -52,7 +52,7 @@ class CategoryServiceTest {
         when(mockConverter.toEntity(dto)).thenReturn(entity);
         when(mockConverter.toDto(entity)).thenReturn(dto);
 
-        Mono<CategoryDto> result = categoryService.addCategory(dto);
+        Mono<CategoryDto> result = interviewService.addCategory(dto);
 
         StepVerifier.create(result)
             .thenConsumeWhile(r -> {
@@ -64,7 +64,7 @@ class CategoryServiceTest {
         verify(mockRepository).save(entity);
         verify(mockConverter).toEntity(dto);
         verify(mockConverter).toDto(entity);
-        verify(categoryService).addCategory(dto);
+        verify(interviewService).addCategory(dto);
     }
 
     private Category getEntity() {

@@ -12,19 +12,19 @@ import reactor.core.publisher.Mono;
 @Slf4j
 @Service
 @RequiredArgsConstructor
-public class CategoryService {
+public class InterviewService {
 
     private final CategoryRepository repository;
     private final CategoryConverter converter;
 
     public Mono<CategoryDto> addCategory(CategoryDto dto) {
-        log.info("CategoryService.addCategory()   {}", dto.toString());
+        log.info("InterviewService.addCategory()   {}", dto.toString());
         return repository.save(converter.toEntity(dto))
             .map(converter::toDto);
     }
 
     public Flux<CategoryDto> getAllCategories() {
-        log.info("CategoryService.getAllCategories()");
+        log.info("InterviewService.getAllCategories()");
         return repository.findAll()
             .map(converter::toDto);
     }

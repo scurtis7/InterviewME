@@ -2,7 +2,7 @@ package com.scurtis.ime.controller;
 
 import com.scurtis.ime.dto.CategoryDto;
 import com.scurtis.ime.entity.Category;
-import com.scurtis.ime.service.CategoryService;
+import com.scurtis.ime.service.InterviewService;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -21,18 +21,18 @@ import static org.mockito.Mockito.when;
 
 @ExtendWith(SpringExtension.class)
 @WebFluxTest(controllers = InterviewController.class)
-@Import(CategoryService.class)
+@Import(InterviewService.class)
 class InterviewControllerTest {
 
     @MockBean
-    private CategoryService categoryService;
+    private InterviewService interviewService;
 
     @Autowired
     private WebTestClient webTestClient;
 
     @AfterEach
     void afterEach() {
-        verifyNoMoreInteractions(categoryService);
+        verifyNoMoreInteractions(interviewService);
     }
 
     @Test
@@ -40,7 +40,7 @@ class InterviewControllerTest {
         CategoryDto body = getCategory();
         Mono<CategoryDto> monoCategory = Mono.just(body);
 
-        when(categoryService.addCategory(body)).thenReturn(monoCategory);
+        when(interviewService.addCategory(body)).thenReturn(monoCategory);
 
         webTestClient.post().uri("/ime/category")
             .accept(MediaType.APPLICATION_JSON)
@@ -49,7 +49,7 @@ class InterviewControllerTest {
             .expectStatus().isOk()
             .expectBody(Category.class);
 
-        verify(categoryService).addCategory(body);
+        verify(interviewService).addCategory(body);
     }
 
     private CategoryDto getCategory() {

@@ -1,7 +1,7 @@
 package com.scurtis.ime.controller;
 
 import com.scurtis.ime.dto.CategoryDto;
-import com.scurtis.ime.service.CategoryService;
+import com.scurtis.ime.service.InterviewService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.MediaType;
@@ -19,7 +19,7 @@ import reactor.core.publisher.Mono;
 @RequestMapping("ime/category")
 public class InterviewController {
 
-    private final CategoryService service;
+    private final InterviewService service;
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     public Mono<CategoryDto> addCategory(@RequestBody CategoryDto dto) {
