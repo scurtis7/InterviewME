@@ -123,6 +123,8 @@
                                 <exclude>com/scurtis/ime/config/*</exclude>
                                 <exclude>com/scurtis/ime/dto/*</exclude>
                                 <exclude>com/scurtis/ime/entity/*</exclude>
+                                <exclude>com/scurtis/ime/exception/model/*</exclude>
+                                <exclude>com/scurtis/ime/exception/ImeServerException.class</exclude>
                             </excludes>
                         </configuration>
                     </execution>
@@ -138,6 +140,8 @@
                                 <exclude>com/scurtis/ime/config/*</exclude>
                                 <exclude>com/scurtis/ime/dto/*</exclude>
                                 <exclude>com/scurtis/ime/entity/*</exclude>
+                                <exclude>com/scurtis/ime/exception/model/*</exclude>
+                                <exclude>com/scurtis/ime/exception/ImeServerException.class</exclude>
                             </excludes>
                             <rules>
                                 <rule>
