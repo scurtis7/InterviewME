@@ -1,0 +1,26 @@
+@import "../../../../assets/styles/variables";
+
+.menu-content {
+  justify-self: left;
+  //border: 1px solid red;
+}
+
+.menu-button {
+  height: 55px;
+  width: 55px;
+}
+
+.hamburger {
+  color: $ime-white;
+  transform: scale(2);
+}
+
+.menu-list-item {
+  height: 30px !important;
+}
+
+.menu-item {
+  font-size: 14px;
+  color: $ime-blue-3;
+}
+

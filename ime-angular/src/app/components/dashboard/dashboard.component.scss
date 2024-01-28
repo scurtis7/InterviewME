@@ -1,0 +1,33 @@
+@import "../../../assets/styles/variables";
+
+.header-container {
+  background-color: $ime-blue-3;
+  border-radius: 5px;
+  display: grid;
+  grid-template-columns: min-content 450px;
+  grid-template-rows: 60px;
+  margin-bottom: 20px;
+  //border: red 1px solid;
+}
+
+.header-title {
+  font-size: 40px;
+  color: $ime-white;
+  align-self: center;
+}
+
+.main-content {
+  margin: 10px;
+  //border: 1px solid red;
+}
+
+.tab-style {
+  color: $ime-blue-4;
+}
+
+.nav-link.active {
+  color: $ime-white;
+  background-color: $ime-blue-5;
+}
+
+

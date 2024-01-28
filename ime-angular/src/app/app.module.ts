@@ -7,6 +7,7 @@ import {MaterialModule} from "./common/material.module";
 import {FormsModule} from "@angular/forms";
 import {RouterModule, Routes} from "@angular/router";
 import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { MenuComponent } from './components/shared/menu/menu.component';
 
 const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent },
@@ -16,7 +17,8 @@ const routes: Routes = [
 @NgModule({
   declarations: [
     AppComponent,
-    DashboardComponent
+    DashboardComponent,
+    MenuComponent
   ],
   imports: [
     BrowserModule,

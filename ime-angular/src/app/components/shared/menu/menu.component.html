@@ -1,0 +1,12 @@
+<div class="menu-content">
+  <button class="menu-button" [matMenuTriggerFor]="menu" mat-button>
+    <mat-icon class="hamburger">menu</mat-icon>
+  </button>
+  <mat-menu #menu="matMenu">
+    <mat-nav-list>
+      <mat-list-item class="menu-list-item" routerLink="/dashboard">
+        <span class="menu-item" matLine>Dashboard</span>
+      </mat-list-item>
+    </mat-nav-list>
+  </mat-menu>
+</div>
