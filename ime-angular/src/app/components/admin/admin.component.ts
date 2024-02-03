@@ -7,4 +7,6 @@ import { Component } from '@angular/core';
 })
 export class AdminComponent {
 
+  dataSource: string[] = ['Java', 'Spring', 'Spring Boot'];
+
 }

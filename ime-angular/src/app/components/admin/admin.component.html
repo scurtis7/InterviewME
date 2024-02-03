@@ -3,10 +3,10 @@
   <div class="main-card">
     <span class="card-title">Topics</span>
     <div>
-      <mat-list>
-        <mat-list-item>Java</mat-list-item>
-        <mat-list-item>Spring</mat-list-item>
-        <mat-list-item>Spring Boot</mat-list-item>
+      <mat-list role="list">
+        <mat-list-item class="list-item" role="listitem" *ngFor="let topic of dataSource">
+          <span class="menu-item" matLine>{{topic}}</span>
+        </mat-list-item>
       </mat-list>
     </div>
   </div>
