@@ -1,12 +1,19 @@
-<div class="menu-content">
-  <button class="menu-button" [matMenuTriggerFor]="menu" mat-button>
-    <mat-icon class="hamburger">menu</mat-icon>
-  </button>
-  <mat-menu #menu="matMenu">
-    <mat-nav-list>
-      <mat-list-item class="menu-list-item" routerLink="/dashboard">
-        <span class="menu-item" matLine>Dashboard</span>
-      </mat-list-item>
-    </mat-nav-list>
-  </mat-menu>
+<div class="mat-elevation-z8 header-container">
+  <div class="menu-content">
+    <button class="menu-button" [matMenuTriggerFor]="menu" mat-button>
+      <mat-icon class="hamburger">menu</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+      <mat-nav-list>
+        <mat-list-item class="menu-list-item" routerLink="/dashboard">
+          <span class="menu-item" matLine>Dashboard</span>
+        </mat-list-item>
+        <mat-list-item class="menu-list-item" routerLink="/admin">
+          <span class="menu-item" matLine>Administration</span>
+        </mat-list-item>
+      </mat-nav-list>
+    </mat-menu>
+  </div>
+  <span class="page-title"> {{pageTitle}} </span>
+  <span class="header-title">interview ME</span>
 </div>
