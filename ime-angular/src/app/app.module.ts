@@ -8,6 +8,7 @@ import {RouterModule, Routes} from "@angular/router";
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { MenuComponent } from './components/shared/menu/menu.component';
 import { AdminComponent } from './components/admin/admin.component';
+import {HttpClientModule} from "@angular/common/http";
 
 const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent },
@@ -23,6 +24,7 @@ const routes: Routes = [
     AdminComponent
   ],
   imports: [
+    HttpClientModule,
     BrowserModule,
     BrowserAnimationsModule,
     MaterialModule,

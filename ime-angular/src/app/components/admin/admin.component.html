@@ -1,7 +1,10 @@
 <app-menu pageTitle="Administration"></app-menu>
 <div class="main-layout">
   <div class="main-card">
-    <span class="card-title">Topics</span>
+    <div class="card-title">
+      <span class="card-header-title">Categories</span>
+      <button type="button" class="btn btn-outline-light category-button">New Category</button>
+    </div>
     <div>
       <mat-list role="list">
         <mat-list-item class="list-item" role="listitem" *ngFor="let topic of dataSource">
@@ -11,7 +14,7 @@
     </div>
   </div>
   <div class="main-card">
-    <span class="card-title">Questions</span>
+    <span class="card-header-title">Questions</span>
     <span>body</span>
   </div>
 </div>
