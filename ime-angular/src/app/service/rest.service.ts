@@ -12,7 +12,14 @@ export class RestService {
   }
 
   public getCategories(): Observable<Category[]> {
-    return this.http.get<Category[]>(`http://localhost:8080/ime/category/`);
+    return this.http.get<Category[]>(`http://localhost:8080/ime/category`);
+  }
+
+  public saveCategory(newCategory: string): Observable<Category> {
+    console.log("Saving new category -> " + newCategory);
+    let category = new Category();
+    category.name = newCategory;
+    return this.http.post<Category>(`http://localhost:8080/ime/category`, category);
   }
 
 }

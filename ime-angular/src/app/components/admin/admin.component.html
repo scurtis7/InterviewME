@@ -1,20 +1,20 @@
 <app-menu pageTitle="Administration"></app-menu>
+
 <div class="main-layout">
-  <div class="main-card">
-    <div class="card-title">
-      <span class="card-header-title">Categories</span>
-      <button type="button" class="btn btn-outline-light category-button">New Category</button>
+  <ul class="nav nav-tabs" id="adminTabs" role="tablist">
+    <li class="nav-item" role="presentation">
+      <button class="nav-link active" id="categories-tab" data-bs-toggle="tab" data-bs-target="#categories-tab-pane" type="button" role="tab" aria-controls="categories-tab-pane" aria-selected="true">Categories</button>
+    </li>
+    <li class="nav-item" role="presentation">
+      <button class="nav-link" id="questions-tab" data-bs-toggle="tab" data-bs-target="#questions-tab-pane" type="button" role="tab" aria-controls="questions-tab-pane" aria-selected="false">Questions</button>
+    </li>
+  </ul>
+  <div class="tab-content" id="adminTabsContent">
+    <div class="tab-pane fade show active" id="categories-tab-pane" role="tabpanel" aria-labelledby="categories-tab" tabindex="0">
+      <app-category-list></app-category-list>
     </div>
-    <div>
-      <mat-list role="list">
-        <mat-list-item class="list-item" role="listitem" *ngFor="let topic of dataSource">
-          <span class="menu-item" matLine>{{topic}}</span>
-        </mat-list-item>
-      </mat-list>
+    <div class="tab-pane fade" id="questions-tab-pane" role="tabpanel" aria-labelledby="questions-tab" tabindex="0">
+      <app-question-list></app-question-list>
     </div>
-  </div>
-  <div class="main-card">
-    <span class="card-header-title">Questions</span>
-    <span>body</span>
   </div>
 </div>

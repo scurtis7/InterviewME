@@ -1,0 +1,16 @@
+@import "../../../../assets/styles/variables";
+@import "../../../../assets/styles/common";
+
+.category-button {
+  width: 130px;
+}
+
+.list-item {
+  cursor: pointer;
+}
+
+.menu-item {
+  font-size: 18px;
+  color: $ime-cyan-5;
+  cursor: pointer;
+}

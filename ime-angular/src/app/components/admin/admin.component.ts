@@ -7,22 +7,22 @@ import {Category} from "../../model/category";
   templateUrl: './admin.component.html',
   styleUrl: './admin.component.scss'
 })
-export class AdminComponent implements OnInit {
+export class AdminComponent {
 
-  dataSource: Category[];
-
-  constructor(private restService: RestService) {
-  }
-
-  ngOnInit(): void {
-    this.getCategories();
-  }
-
-  private getCategories() {
-    this.restService.getCategories()
-      .subscribe((categories: Category[]) => {
-        this.dataSource = categories;
-      });
-  }
+  // dataSource: Category[];
+  //
+  // constructor(private restService: RestService) {
+  // }
+  //
+  // ngOnInit(): void {
+  //   this.getCategories();
+  // }
+  //
+  // private getCategories() {
+  //   this.restService.getCategories()
+  //     .subscribe((categories: Category[]) => {
+  //       this.dataSource = categories;
+  //     });
+  // }
 
 }
