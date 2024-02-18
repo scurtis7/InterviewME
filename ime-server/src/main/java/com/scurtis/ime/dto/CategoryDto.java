@@ -9,11 +9,16 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class CategoryDto {
+public class CategoryDto implements Comparable<CategoryDto> {
 
     private Long id;
     private String name;
     @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate createdDate;
+
+    @Override
+    public int compareTo(CategoryDto category) {
+        return name.compareTo(category.name);
+    }
 
 }

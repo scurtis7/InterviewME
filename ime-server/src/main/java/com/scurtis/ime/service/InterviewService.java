@@ -38,8 +38,9 @@ public class InterviewService {
 
     public Flux<CategoryDto> getAllCategories() {
         log.info("InterviewService.getAllCategories()");
-        return categoryRepository.findAllSorted()
+        return categoryRepository.findAll()
             .map(categoryConverter::toDto)
+            .sort()
             .onErrorMap(e -> {
                 throw new ImeServerException(HttpStatus.BAD_REQUEST, e.getMessage(), e.getClass().getName());
             });

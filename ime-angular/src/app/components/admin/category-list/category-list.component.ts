@@ -2,6 +2,8 @@ import { Component, Input, OnInit, Output } from '@angular/core';
 import { Category } from "../../../model/category";
 import { RestService } from "../../../service/rest.service";
 import { map, Observable } from "rxjs";
+import { HttpErrorResponse } from "@angular/common/http";
+import { ErrorResponse } from "../../../model/error-response";
 
 @Component({
   selector: 'app-category-list',
@@ -40,8 +42,8 @@ export class CategoryListComponent implements OnInit {
         next: (category: Category) => {
           this.refreshCategories();
         },
-        error: (err: Error) => {
-          console.error("Error while saving category: " + err.message);
+        error: (err: HttpErrorResponse) => {
+          this.handleError(err);
         }
       });
   }
@@ -52,10 +54,15 @@ export class CategoryListComponent implements OnInit {
         next: (category: Category) => {
           this.refreshCategories();
         },
-        error: (err: Error) => {
-          console.error("Error while saving category: " + err.message);
+        error: (err: HttpErrorResponse) => {
+          this.handleError(err);
         }
       });
+  }
+
+  private handleError(err: HttpErrorResponse) {
+    const errorResponse: ErrorResponse = err.error;
+    console.error(errorResponse.message, errorResponse);
   }
 
 }
