@@ -9,6 +9,17 @@
   color: $ime-blue-5;
 }
 
+.ime-button {
+  width: 130px;
+  background-color: $ime-blue-5;
+  color: $ime-cyan-5;
+}
+
+.ime-button:hover {
+  background-color: $ime-cyan-4;
+  color: $ime-blue-5;
+}
+
 .nav {
   background-color: $ime-grey-4;
   border-radius: 7px;

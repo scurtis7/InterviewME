@@ -1,12 +1,13 @@
 <div class="main-card">
   <div class="card-title">
     <span class="card-header-title">Categories</span>
-    <button type="button" class="btn btn-outline-light category-button" data-bs-toggle="modal" data-bs-target="#modalCategory">New Category</button>
+    <button type="button" class="btn btn-outline-light category-button" (click)="setModalDialog('Add New', '')" data-bs-toggle="modal" data-bs-target="#modalCategory">New Category</button>
   </div>
   <div>
     <mat-list role="list">
       <mat-list-item class="list-item" role="listitem" *ngFor="let category of categories$ | async">
-        <span class="menu-item" matLine>{{category}}</span>
+        <i class="bi bi-trash3 trash-can" (click)="deleteCategory(category)"></i>
+        <span class="menu-item" matLine (click)="setModalDialog('Edit', category)" data-bs-toggle="modal" data-bs-target="#modalCategory">{{category}}</span>
       </mat-list-item>
     </mat-list>
   </div>
@@ -17,17 +18,17 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h1 class="modal-title fs-5" id="staticBackdropLabel">Add New Category</h1>
+        <h1 class="modal-title" id="staticBackdropLabel">{{modalTitle}} Category</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
         <div class="input-group input-group-sm mb-3">
           <span class="input-group-text" id="inputGroup-sizing-sm">Category</span>
-          <input [(ngModel)]="newCategory" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+          <input [(ngModel)]="modalCategory" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="saveCategory()">Save</button>
+        <button type="button" class="btn btn-primary btn-outline-light ime-button" data-bs-dismiss="modal" (click)="saveCategory()">Save</button>
       </div>
     </div>
   </div>

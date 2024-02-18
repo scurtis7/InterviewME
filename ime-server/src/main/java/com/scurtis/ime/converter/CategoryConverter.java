@@ -14,7 +14,7 @@ public class CategoryConverter {
     public Category toEntity(CategoryDto dto) {
         return Category.builder()
             .id(dto.getId())
-            .name(dto.getName())
+            .name(dto.getName().toUpperCase())
             .build();
     }
 

@@ -39,7 +39,7 @@ class InterviewControllerTest {
         CategoryDto body = getCategoryDto();
         Mono<CategoryDto> monoCategoryDto = Mono.just(body);
 
-        when(mockInterviewService.addCategory(body)).thenReturn(monoCategoryDto);
+        when(mockInterviewService.saveCategory(body)).thenReturn(monoCategoryDto);
 
         webTestClient.post().uri("/ime/category")
             .accept(MediaType.APPLICATION_JSON)
@@ -49,7 +49,7 @@ class InterviewControllerTest {
             .expectBody(CategoryDto.class)
             .isEqualTo(body);
 
-        verify(mockInterviewService).addCategory(body);
+        verify(mockInterviewService).saveCategory(body);
     }
 
     @Test

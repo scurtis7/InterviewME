@@ -16,10 +16,13 @@ export class RestService {
   }
 
   public saveCategory(newCategory: string): Observable<Category> {
-    console.log("Saving new category -> " + newCategory);
     let category = new Category();
     category.name = newCategory;
     return this.http.post<Category>(`http://localhost:8080/ime/category`, category);
+  }
+
+  public deleteCategory(categoryName: string): Observable<Category> {
+    return this.http.delete<Category>(`http://localhost:8080/ime/category?name=` + categoryName);
   }
 
 }

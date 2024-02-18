@@ -10,7 +10,9 @@ import { map, Observable } from "rxjs";
 })
 export class CategoryListComponent implements OnInit {
 
-  @Input() @Output() newCategory: string = "";
+  modalCategory: string = "";
+  modalTitle: string = "";
+
   categories$: Observable<string[]>;
 
   constructor(private restService: RestService) {
@@ -18,6 +20,11 @@ export class CategoryListComponent implements OnInit {
 
   ngOnInit(): void {
     this.refreshCategories();
+  }
+
+  setModalDialog(title: string, category: string) {
+    this.modalTitle = title;
+    this.modalCategory = category;
   }
 
   private refreshCategories() {
@@ -28,10 +35,21 @@ export class CategoryListComponent implements OnInit {
   }
 
   saveCategory() {
-    this.restService.saveCategory(this.newCategory)
+    this.restService.saveCategory(this.modalCategory)
       .subscribe({
         next: (category: Category) => {
-          console.log("Category saved: " + category.name + " ...Refreshing list")
+          this.refreshCategories();
+        },
+        error: (err: Error) => {
+          console.error("Error while saving category: " + err.message);
+        }
+      });
+  }
+
+  deleteCategory(categoryName: string) {
+    this.restService.deleteCategory(categoryName)
+      .subscribe({
+        next: (category: Category) => {
           this.refreshCategories();
         },
         error: (err: Error) => {

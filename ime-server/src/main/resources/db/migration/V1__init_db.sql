@@ -21,5 +21,5 @@ CREATE TABLE ime.question (
     created_date DATE DEFAULT CURRENT_DATE
 );
 
-INSERT INTO ime.skill_level(name) VALUES ('Easy'), ('Medium'), ('Hard');
-INSERT INTO ime.category(name) VALUES ('Java'), ('JavaScript'), ('Spring'), ('Spring Boot'), ('SQL');
+INSERT INTO ime.skill_level(name) VALUES ('EASY'), ('MEDIUM'), ('HARD');
+INSERT INTO ime.category(name) VALUES ('JAVA'), ('JAVASCRIPT'), ('SPRING'), ('SPRING BOOT'), ('SQL');

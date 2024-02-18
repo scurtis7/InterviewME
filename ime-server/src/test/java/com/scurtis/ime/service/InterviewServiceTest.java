@@ -63,7 +63,7 @@ class InterviewServiceTest {
         when(mockCategoryConverter.toEntity(dto)).thenReturn(entity);
         when(mockCategoryConverter.toDto(entity)).thenReturn(dto);
 
-        Mono<CategoryDto> result = interviewService.addCategory(dto);
+        Mono<CategoryDto> result = interviewService.saveCategory(dto);
 
         StepVerifier.create(result)
             .thenConsumeWhile(categoryDto -> {
@@ -76,7 +76,7 @@ class InterviewServiceTest {
         verify(mockCategoryRepository).save(entity);
         verify(mockCategoryConverter).toEntity(dto);
         verify(mockCategoryConverter).toDto(entity);
-        verify(interviewService).addCategory(dto);
+        verify(interviewService).saveCategory(dto);
     }
 
     @Test
