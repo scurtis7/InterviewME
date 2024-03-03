@@ -43,7 +43,7 @@ public class InterviewController {
         return interviewService.deleteCategoryByName(categoryName.toUpperCase());
     }
 
-    @GetMapping(path = "skill_level")
+    @GetMapping(path = "skill")
     public Flux<SkillLevelDto> getAllSkillLevels() {
         log.info("InterviewController.getAllSkillLevels()");
         return interviewService.getAllSkillLevels();

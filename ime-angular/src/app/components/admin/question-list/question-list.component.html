@@ -1,13 +1,77 @@
 <div class="main-card">
   <div class="card-title">
     <span class="card-header-title">Questions</span>
-    <button type="button" class="btn btn-outline-light question-button">New Question</button>
+    <button type="button" class="btn btn-outline-light question-button" (click)="setModalDialog('Add New', '')" data-bs-toggle="modal" data-bs-target="#modalQuestion">New Question</button>
   </div>
-  <div>
-    <mat-list role="list">
-      <mat-list-item class="list-item" role="listitem">
-        <span class="menu-item" matLine></span>
-      </mat-list-item>
-    </mat-list>
+  <div class="table-container">
+    <table [dataSource]="dataSource" class="mat-elevation-z8" mat-table matSort>
+      <!-- ID Column -->
+      <ng-container matColumnDef="id">
+        <th *matHeaderCellDef mat-header-cell mat-sort-header sortActionDescription="Sort by id">ID</th>
+        <td *matCellDef="let element" mat-cell>{{element.id}}</td>
+      </ng-container>
+
+      <!-- Category Column -->
+      <ng-container matColumnDef="category">
+        <th *matHeaderCellDef mat-header-cell mat-sort-header sortActionDescription="Sort by category">Category</th>
+        <td *matCellDef="let element" mat-cell>{{element.category}}</td>
+      </ng-container>
+
+      <!-- Skill Column -->
+      <ng-container matColumnDef="skill">
+        <th *matHeaderCellDef mat-header-cell mat-sort-header sortActionDescription="Sort by skill">Skill</th>
+        <td *matCellDef="let element" mat-cell>{{element.skill}}</td>
+      </ng-container>
+
+      <!-- Question Column -->
+      <ng-container matColumnDef="question">
+        <th *matHeaderCellDef mat-header-cell mat-sort-header sortActionDescription="Sort by question">Question</th>
+        <td *matCellDef="let element" mat-cell>{{element.question}}</td>
+      </ng-container>
+
+      <!-- Answer Column -->
+      <ng-container matColumnDef="answer">
+        <th *matHeaderCellDef mat-header-cell mat-sort-header sortActionDescription="Sort by answer">Answer</th>
+        <td *matCellDef="let element" mat-cell>{{element.answer}}</td>
+      </ng-container>
+
+      <tr *matHeaderRowDef="displayedColumns; sticky: true" mat-header-row></tr>
+      <tr *matRowDef="let row; columns: displayedColumns;" mat-row></tr>
+    </table>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="modalQuestion" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title" id="staticBackdropLabel">{{modalTitle}} Question</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="input-group input-group-lg mb-3 body-container">
+          <span class="input-group-text">Category</span>
+          <div class="select-container">
+            <select class="form-select dropdown-font" [(ngModel)]="modalCategory">
+              <option *ngFor="let category of categories" [value]="category">{{category}}</option>
+            </select>
+          </div>
+          <span class="input-group-text">Skill Level</span>
+          <div class="select-container">
+            <select class="form-select dropdown-font" [(ngModel)]="modalSkill">
+              <option *ngFor="let skill of skills" [value]="skill">{{skill}}</option>
+            </select>
+          </div>
+          <span class="input-group-text">Question</span>
+          <textarea class="text-field" cdkTextareaAutosize [(ngModel)]="modalQuestion"></textarea>
+          <span class="input-group-text">Answer</span>
+          <textarea class="text-field" cdkTextareaAutosize [(ngModel)]="modalAnswer"></textarea>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary btn-outline-light ime-button" data-bs-dismiss="modal" (click)="saveQuestion()">Save</button>
+      </div>
+    </div>
   </div>
 </div>
