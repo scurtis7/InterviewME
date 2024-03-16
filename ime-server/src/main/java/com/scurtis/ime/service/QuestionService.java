@@ -37,4 +37,9 @@ public class QuestionService {
             });
     }
 
+    public Mono<Void> deleteQuestion(Long id) {
+        log.info("QuestionService.getAllQuestions()");
+        return repository.deleteById(id);
+    }
+
 }

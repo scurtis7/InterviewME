@@ -1,0 +1,32 @@
+<h1 mat-dialog-title class="title">{{title}}</h1>
+<div mat-dialog-content>
+  <div class="body">
+    <div class="dropdown-container">
+      <div class="select-container">
+        <span class="control-title">Category</span>
+        <select class="dropdown-font" [(ngModel)]="selectedCategory">
+          <option *ngFor="let category of categories" [value]="category">{{category}}</option>
+        </select>
+      </div>
+      <div></div>
+      <div class="select-container">
+        <span class="control-title">Skill Level</span>
+        <select class="dropdown-font" [(ngModel)]="selectedSkill">
+          <option *ngFor="let skill of skills" [value]="skill">{{skill}}</option>
+        </select>
+      </div>
+    </div>
+    <div class="text-area-container">
+      <span class="control-title">Question</span>
+      <textarea class="text-area" rows="6" cdkTextareaAutosize [(ngModel)]="question"></textarea>
+    </div>
+    <div class="text-area-container">
+      <span class="control-title">Answer</span>
+      <textarea class="text-area" rows="6" cdkTextareaAutosize [(ngModel)]="answer"></textarea>
+    </div>
+  </div>
+</div>
+<div mat-dialog-actions class="button-container">
+  <button mat-button class="ime-button" (click)="close(true)">Save</button>
+  <button mat-button class="ime-button" (click)="close(false)">Close</button>
+</div>

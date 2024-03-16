@@ -39,3 +39,11 @@
   font-size: 14px;
   color: $ime-blue-3;
 }
+
+.question-row {
+}
+
+.question-row:hover {
+  background-color: $ime-cyan-5;
+  cursor: pointer;
+}

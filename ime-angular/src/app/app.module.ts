@@ -11,6 +11,7 @@ import { AdminComponent } from './components/admin/admin.component';
 import { HttpClientModule } from "@angular/common/http";
 import { QuestionListComponent } from './components/admin/question-list/question-list.component';
 import { CategoryListComponent } from './components/admin/category-list/category-list.component';
+import { QuestionComponent } from './components/admin/question/question.component';
 
 const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent },
@@ -25,7 +26,8 @@ const routes: Routes = [
     MenuComponent,
     AdminComponent,
     CategoryListComponent,
-    QuestionListComponent
+    QuestionListComponent,
+    QuestionComponent
   ],
   imports: [
     HttpClientModule,

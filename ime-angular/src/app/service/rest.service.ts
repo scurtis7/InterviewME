@@ -31,6 +31,14 @@ export class RestService {
     return this.http.get<Question[]>(`http://localhost:8080/ime/question`);
   }
 
+  public saveQuestion(newQuestion: Question): Observable<Question> {
+    return this.http.post<Question>(`http://localhost:8080/ime/question`, newQuestion);
+  }
+
+  public deleteQuestion(id: number): Observable<void> {
+    return this.http.delete<void>(`http://localhost:8080/ime/question?id=${id}`);
+  }
+
   public getSkills(): Observable<Skill[]> {
     return this.http.get<Skill[]>(`http://localhost:8080/ime/skill`);
   }
