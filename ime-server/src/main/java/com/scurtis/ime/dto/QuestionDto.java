@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class QuestionDto {
+public class QuestionDto implements Comparable<QuestionDto> {
 
     private Long id;
     private String question;
@@ -18,5 +18,15 @@ public class QuestionDto {
     private String category;
     @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate createdDate;
+
+    @Override
+    public int compareTo(QuestionDto other) {
+        if (this.id > other.id) {
+            return 1;
+        } else if (this.id < other.id) {
+            return -1;
+        }
+        return 0;
+    }
 
 }

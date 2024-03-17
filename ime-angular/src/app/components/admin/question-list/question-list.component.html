@@ -4,47 +4,49 @@
     <button type="button" class="btn btn-outline-light question-button" (click)="displayQuestionDialog(0)">New Question</button>
   </div>
   <div class="table-container">
-    <table [dataSource]="dataSource" class="mat-elevation-z8" mat-table matSort>
-      <!-- Action Column -->
-      <ng-container matColumnDef="action">
-        <th *matHeaderCellDef mat-header-cell>Action</th>
-        <td *matCellDef="let element" mat-cell style="width: 10px" (click)="deleteQuestion(element.id)">
-          <i class="bi bi-trash2 trash-can"></i>
-        </td>
-      </ng-container>
+    <div class="main-table">
+      <table [dataSource]="dataSource" class="mat-elevation-z8" mat-table matSort>
+        <!-- Action Column -->
+        <ng-container matColumnDef="action">
+          <th *matHeaderCellDef mat-header-cell>Action</th>
+          <td *matCellDef="let element" mat-cell style="width: 10px" (click)="deleteQuestion(element.id)">
+            <i class="bi bi-trash2 trash-can"></i>
+          </td>
+        </ng-container>
 
-      <!-- ID Column -->
-      <ng-container matColumnDef="id">
-        <th *matHeaderCellDef mat-header-cell mat-sort-header sortActionDescription="Sort by id">ID</th>
-        <td *matCellDef="let element" mat-cell style="width: 10px" (click)="displayQuestionDialog(element.id)">{{element.id}}</td>
-      </ng-container>
+        <!-- ID Column -->
+        <ng-container matColumnDef="id">
+          <th *matHeaderCellDef mat-header-cell mat-sort-header sortActionDescription="Sort by id">ID</th>
+          <td *matCellDef="let element" mat-cell style="width: 10px" (click)="displayQuestionDialog(element.id)">{{element.id}}</td>
+        </ng-container>
 
-      <!-- Category Column -->
-      <ng-container matColumnDef="category">
-        <th *matHeaderCellDef mat-header-cell mat-sort-header sortActionDescription="Sort by category">Category</th>
-        <td *matCellDef="let element" mat-cell style="width: 20px" (click)="displayQuestionDialog(element.id)">{{element.category}}</td>
-      </ng-container>
+        <!-- Category Column -->
+        <ng-container matColumnDef="category">
+          <th *matHeaderCellDef mat-header-cell mat-sort-header sortActionDescription="Sort by category">Category</th>
+          <td *matCellDef="let element" mat-cell style="width: 20px" (click)="displayQuestionDialog(element.id)">{{element.category}}</td>
+        </ng-container>
 
-      <!-- Skill Column -->
-      <ng-container matColumnDef="skill">
-        <th *matHeaderCellDef mat-header-cell mat-sort-header sortActionDescription="Sort by skill">Skill</th>
-        <td *matCellDef="let element" mat-cell style="width: 20px" (click)="displayQuestionDialog(element.id)">{{element.skill}}</td>
-      </ng-container>
+        <!-- Skill Column -->
+        <ng-container matColumnDef="skill">
+          <th *matHeaderCellDef mat-header-cell mat-sort-header sortActionDescription="Sort by skill">Skill</th>
+          <td *matCellDef="let element" mat-cell style="width: 20px" (click)="displayQuestionDialog(element.id)">{{element.skill}}</td>
+        </ng-container>
 
-      <!-- Question Column -->
-      <ng-container matColumnDef="question">
-        <th *matHeaderCellDef mat-header-cell mat-sort-header sortActionDescription="Sort by question">Question</th>
-        <td *matCellDef="let element" mat-cell style="width: 350px" (click)="displayQuestionDialog(element.id)">{{element.question}}</td>
-      </ng-container>
+        <!-- Question Column -->
+        <ng-container matColumnDef="question">
+          <th *matHeaderCellDef mat-header-cell mat-sort-header sortActionDescription="Sort by question">Question</th>
+          <td *matCellDef="let element" mat-cell style="width: 350px" (click)="displayQuestionDialog(element.id)">{{element.question}}</td>
+        </ng-container>
 
-      <!-- Answer Column -->
-      <ng-container matColumnDef="answer">
-        <th *matHeaderCellDef mat-header-cell mat-sort-header sortActionDescription="Sort by answer">Answer</th>
-        <td *matCellDef="let element" mat-cell style="width: 350px" (click)="displayQuestionDialog(element.id)">{{element.answer}}</td>
-      </ng-container>
+        <!-- Answer Column -->
+        <ng-container matColumnDef="answer">
+          <th *matHeaderCellDef mat-header-cell mat-sort-header sortActionDescription="Sort by answer">Answer</th>
+          <td *matCellDef="let element" mat-cell style="width: 350px" (click)="displayQuestionDialog(element.id)">{{element.answer}}</td>
+        </ng-container>
 
-      <tr *matHeaderRowDef="displayedColumns; sticky: true" mat-header-row></tr>
-      <tr *matRowDef="let row; columns: displayedColumns;" mat-row class="question-row"></tr>
-    </table>
+        <tr *matHeaderRowDef="displayedColumns; sticky: true" mat-header-row></tr>
+        <tr *matRowDef="let row; columns: displayedColumns;" mat-row class="question-row"></tr>
+      </table>
+    </div>
   </div>
 </div>

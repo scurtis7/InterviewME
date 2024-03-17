@@ -32,6 +32,7 @@ public class QuestionService {
         log.info("QuestionService.getAllQuestions()");
         return repository.findAll()
             .map(converter::toDto)
+            .sort()
             .onErrorMap(e -> {
                 throw new ImeServerException(HttpStatus.BAD_REQUEST, e.getMessage(), e.getClass().getName());
             });
