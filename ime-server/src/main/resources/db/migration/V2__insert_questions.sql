@@ -1,4 +1,4 @@
-insert into MY_TABLE (category, skill, question, answer)
+insert into ime.question (category, skill, question, answer)
 values  ('JAVA', 'EASY', 'Can you change the value of a string?', 'No, a string is immutable.  When you change the value of a string a new string object is actually created.'),
         ('JAVA', 'EASY', 'What is a deadlock?', '- Deadlock - two or more threads wait forever for a lock or resource held by another thread.
 - thread-1 needs lock-1 & lock-2
