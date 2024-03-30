@@ -2,12 +2,35 @@
 
 <div class="main-layout">
   <div class="header-container">
-    <span class="header">How would you like to be interviewed today?</span>
+    <span class="header">Select how you want to be interviewed today</span>
   </div>
-  <div>
-    Row 2 - Selections
+  <div class="selection-container">
+    <div class="dropdown-row">
+      <div>
+        <span class="selection-title">Categories</span>
+        <mat-form-field>
+          <mat-select multiple [formControl]="categories" [(value)]="selectedCategories" placeholder="Select Categories">
+            <mat-option *ngFor="let category of categoryList" [value]="category">{{ category }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div>
+        <span class="selection-title">Skill Level</span>
+        <mat-form-field>
+          <mat-select multiple [formControl]="skills" [(value)]="selectedSkills" placeholder="Select Skill Levels">
+            <mat-option *ngFor="let skill of skillList" [value]="skill">{{ skill }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+    <div>
+      <p>Selected Categories: {{ selectedCategories }}</p>
+    </div>
+    <div>
+      <p>Selected Skills: {{ selectedSkills }}</p>
+    </div>
   </div>
-  <div>
+  <div class="question-container">
     Row 3 - Question & Answer
   </div>
 </div>

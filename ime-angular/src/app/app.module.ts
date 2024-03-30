@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from "./common/material.module";
-import { FormsModule } from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { RouterModule, Routes } from "@angular/router";
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { MenuComponent } from './components/shared/menu/menu.component';
@@ -29,14 +29,15 @@ const routes: Routes = [
     QuestionListComponent,
     QuestionComponent
   ],
-  imports: [
-    HttpClientModule,
-    BrowserModule,
-    BrowserAnimationsModule,
-    MaterialModule,
-    FormsModule,
-    RouterModule.forRoot(routes)
-  ],
+    imports: [
+        HttpClientModule,
+        BrowserModule,
+        BrowserAnimationsModule,
+        MaterialModule,
+        FormsModule,
+        RouterModule.forRoot(routes),
+        ReactiveFormsModule
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })

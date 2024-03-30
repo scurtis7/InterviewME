@@ -15,11 +15,34 @@
 }
 
 .header {
-  font-size: 20px;
+  font-size: 24px;
   color: $ime-blue-3;
   height: 50px;
   line-height: 50px;
   display: flex;
   align-content: center;
   margin-left: 10px;
+}
+
+.selection-container {
+  margin: 20px;
+  display: grid;
+  grid-template-columns: auto;
+  grid-template-rows: auto auto auto;
+}
+
+.selection-title {
+  margin-right: 10px;
+  font-size: 20px;
+  color: $ime-blue-3;
+}
+
+.dropdown-row {
+  display: grid;
+  grid-template-columns: 400px auto;
+  grid-template-rows: auto;
+}
+
+.question-container {
+  margin: 10px;
 }
