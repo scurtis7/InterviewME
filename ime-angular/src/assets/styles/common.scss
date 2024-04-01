@@ -12,12 +12,12 @@
 .ime-button {
   width: 130px;
   background-color: $ime-blue-5;
-  color: $ime-cyan-5;
+  color: $ime-cyan-5 !important;
 }
 
 .ime-button:hover {
   background-color: $ime-cyan-4;
-  color: $ime-blue-5;
+  color: $ime-blue-5 !important;
 }
 
 .nav {

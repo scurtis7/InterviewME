@@ -46,11 +46,10 @@ export class DashboardComponent implements OnInit {
       );
   }
 
-  selectionChange() {
-    console.log(this.selectedCategories);
-    console.log(this.selectedSkills);
-    this.selectedCategories = this.categories.value;
-    this.selectedSkills = this.skills.value;
+  start() {
+  }
+
+  stop() {
   }
 
 }

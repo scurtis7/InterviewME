@@ -4,7 +4,7 @@
   <div class="header-container">
     <span class="header">Select how you want to be interviewed today</span>
   </div>
-  <div class="selection-container">
+  <div class="selection-layout">
     <div class="dropdown-row">
       <div>
         <span class="selection-title">Categories</span>
@@ -24,13 +24,20 @@
       </div>
     </div>
     <div>
-      <p>Selected Categories: {{ selectedCategories }}</p>
+      <p class="selected-items">Selected Categories: {{ selectedCategories }}</p>
     </div>
     <div>
-      <p>Selected Skills: {{ selectedSkills }}</p>
+      <p class="selected-items">Selected Skills: {{ selectedSkills }}</p>
     </div>
   </div>
-  <div class="question-container">
-    Row 3 - Question & Answer
-  </div>
+  <div class="question-layout">
+    <div class="button-container">
+      <button mat-button class="ime-button" (click)="start()">Start</button>
+      <button mat-button class="ime-button" (click)="stop()">Stop</button>
+    </div>
+    <div class="question-container">
+      <div>Question</div>
+      <div>Answer</div>
+    </div>
+    </div>
 </div>
