@@ -36,8 +36,22 @@
       <button mat-button class="ime-button" (click)="stop()">Stop</button>
     </div>
     <div class="question-container">
-      <div>Question</div>
-      <div>Answer</div>
+      <div class="card-layout-question mat-elevation-z8">
+        <div class="card-text">
+          This is a sample question.
+        </div>
+        <div class="card-button">
+          <button mat-button class="ime-button" (click)="start()">Next</button>
+        </div>
+      </div>
+      <div class="card-layout-answer mat-elevation-z8">
+        <div class="card-text">
+          This is a sample answer.
+        </div>
+        <div class="card-button">
+          <button mat-button class="ime-button" (click)="start()">Flip</button>
+        </div>
+      </div>
     </div>
     </div>
 </div>

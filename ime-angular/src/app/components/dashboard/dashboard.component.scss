@@ -72,6 +72,43 @@
 
 .question-container {
   display: grid;
-  grid-template-columns: 500px 500px;
-  grid-template-rows: auto;
+  grid-template-columns: 600px 600px;
+  grid-template-rows: 400px;
 }
+
+.card-layout {
+  display: grid;
+  grid-template-columns: auto;
+  grid-template-rows: 300px 70px;
+  margin-top: 20px;
+  border: solid 1px $ime-grey-3;
+  border-radius: 10px;
+  font-size: 18px;
+  color: $ime-blue-3;
+  padding: 15px;
+}
+
+.card-layout-question {
+  @extend .card-layout;
+  margin-right: 25px;
+}
+
+.card-layout-answer {
+  @extend .card-layout;
+  margin-left: 25px;
+}
+
+.card-text {
+  //border: solid 1px red;
+}
+
+.card-button {
+  display: flex;
+  align-self: center;
+  justify-self: center;
+  //border: solid 1px red;
+}
+
+
+
+
