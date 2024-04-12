@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { RestService } from "../../service/rest.service";
 import { Category } from "../../model/category";
 import { Skill } from "../../model/skill";
-import { FormControl } from "@angular/forms";
 
 @Component({
   selector: 'app-dashboard',
@@ -13,9 +12,6 @@ export class DashboardComponent implements OnInit {
 
   categoryList: string[];
   skillList: string[];
-
-  categories: FormControl<string>;
-  skills: FormControl<string>;
 
   selectedCategories: string;
   selectedSkills: string;
@@ -55,6 +51,8 @@ export class DashboardComponent implements OnInit {
   }
 
   start() {
+    console.log(`Catagories: [${this.selectedCategories}]`);
+    console.log(`Skills: [${this.selectedSkills}]`);
   }
 
   stop() {
