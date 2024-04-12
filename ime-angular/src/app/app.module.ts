@@ -12,6 +12,7 @@ import { HttpClientModule } from "@angular/common/http";
 import { QuestionListComponent } from './components/admin/question-list/question-list.component';
 import { CategoryListComponent } from './components/admin/category-list/category-list.component';
 import { QuestionComponent } from './components/admin/question/question.component';
+import { SpinnerComponent } from './components/shared/spinner/spinner.component';
 
 const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent },
@@ -27,7 +28,8 @@ const routes: Routes = [
     AdminComponent,
     CategoryListComponent,
     QuestionListComponent,
-    QuestionComponent
+    QuestionComponent,
+    SpinnerComponent
   ],
     imports: [
         HttpClientModule,

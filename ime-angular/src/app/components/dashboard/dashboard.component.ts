@@ -20,12 +20,18 @@ export class DashboardComponent implements OnInit {
   selectedCategories: string;
   selectedSkills: string;
 
+  isLoading = true;
+
   constructor(private restService: RestService) {
   }
 
   ngOnInit(): void {
+    this.loadDropdowns();
+  }
+
+  private loadDropdowns() {
+    this.isLoading = true;
     this.loadCategories();
-    this.loadSkills();
   }
 
   private loadCategories() {
@@ -33,6 +39,7 @@ export class DashboardComponent implements OnInit {
       .subscribe(
         (result: Category[]) => {
           this.categoryList = result.map(category => category.name);
+          this.loadSkills();
         }
       );
   }
@@ -42,6 +49,7 @@ export class DashboardComponent implements OnInit {
       .subscribe(
         (result: Skill[]) => {
           this.skillList = result.map(skill => skill.name);
+          this.isLoading = false;
         }
       );
   }
