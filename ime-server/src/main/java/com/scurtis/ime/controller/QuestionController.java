@@ -1,7 +1,9 @@
 package com.scurtis.ime.controller;
 
+import com.scurtis.ime.dto.CriteriaDto;
 import com.scurtis.ime.dto.QuestionDto;
 import com.scurtis.ime.service.QuestionService;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.MediaType;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
+
 
 @Slf4j
 @RestController
@@ -33,6 +36,12 @@ public class QuestionController {
     public Flux<QuestionDto> getAllQuestions() {
         log.info("QuestionController.getAllQuestions()");
         return service.getAllQuestions();
+    }
+
+    @PostMapping(path = "search", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public Flux<QuestionDto> searchQuestions(@RequestBody CriteriaDto dto) {
+        log.info("QuestionController.searchQuestionsByCategoryAndSkill()");
+        return service.searchQuestions(dto);
     }
 
     @DeleteMapping
