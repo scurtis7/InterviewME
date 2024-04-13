@@ -4,6 +4,7 @@ import {Observable} from "rxjs";
 import {Category} from "../model/category";
 import { Question } from "../model/question";
 import { Skill } from "../model/skill";
+import { Criteria } from "../model/criteria";
 
 @Injectable({
   providedIn: 'root'
@@ -33,6 +34,10 @@ export class RestService {
 
   public saveQuestion(newQuestion: Question): Observable<Question> {
     return this.http.post<Question>(`http://localhost:8080/ime/question`, newQuestion);
+  }
+
+  public searchQuestions(criteria: Criteria): Observable<Question[]> {
+    return this.http.post<Question[]>(`http://localhost:8080/ime/question/search`, criteria);
   }
 
   public deleteQuestion(id: number): Observable<void> {

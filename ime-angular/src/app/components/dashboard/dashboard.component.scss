@@ -109,6 +109,17 @@
   //border: solid 1px red;
 }
 
+.text-area-container {
+  display: grid;
+  grid-template-columns: auto;
+  grid-template-rows: auto auto;
+  margin-top: 10px;
+}
+
+.text-area {
+  height: 15em !important;
+}
+
 
 
 

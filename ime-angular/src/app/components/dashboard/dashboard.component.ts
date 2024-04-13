@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { RestService } from "../../service/rest.service";
 import { Category } from "../../model/category";
 import { Skill } from "../../model/skill";
+import { Criteria } from "../../model/criteria";
+import { Question } from "../../model/question";
 
 @Component({
   selector: 'app-dashboard',
@@ -16,12 +18,21 @@ export class DashboardComponent implements OnInit {
   selectedCategories: string;
   selectedSkills: string;
 
+  questions: Question[];
+  currentCount = -1;
+  showAnswer = false;
+  currentCategory: string = "";
+  currentSkill: string = "";
+  currentQuestion: string = "";
+  currentAnswer: string = "";
+
   isLoading = true;
 
   constructor(private restService: RestService) {
   }
 
   ngOnInit(): void {
+    this.resetFields();
     this.loadDropdowns();
   }
 
@@ -51,11 +62,55 @@ export class DashboardComponent implements OnInit {
   }
 
   start() {
-    console.log(`Catagories: [${this.selectedCategories}]`);
-    console.log(`Skills: [${this.selectedSkills}]`);
+    let criteria: Criteria = new Criteria();
+    criteria.categories = this.stringToArray(this.selectedCategories);
+    criteria.skills = this.stringToArray(this.selectedSkills);
+    this.restService.searchQuestions(criteria)
+      .subscribe((result: Question[]) => {
+        this.questions = result;
+        this.currentCount = -1;
+        this.nextQuestion();
+      });
+  }
+
+  private stringToArray(str: string) {
+    let strArray: string[] = [];
+    if (str && str.length > 0) {
+      for (let i = 0; i < str.length; i++) {
+        strArray.push(str[i]);
+      }
+    }
+    return strArray;
   }
 
   stop() {
+    this.resetFields();
+  }
+
+  private resetFields() {
+    this.questions = [];
+    this.currentCount = -1;
+    this.showAnswer = false;
+    this.currentCategory = "";
+    this.currentSkill = "";
+    this.currentQuestion = "";
+    this.currentAnswer = "";
+  }
+
+  nextQuestion() {
+    this.currentCount++;
+    if (this.currentCount <= this.questions.length) {
+      this.showAnswer = false;
+      const question = this.questions[this.currentCount];
+      this.currentCategory = question.category;
+      this.currentSkill = question.skill;
+      this.currentQuestion = question.question;
+      this.currentAnswer = question.answer;
+    }
+  }
+
+  toggleShowAnswer() {
+    this.showAnswer = !this.showAnswer;
   }
 
 }
