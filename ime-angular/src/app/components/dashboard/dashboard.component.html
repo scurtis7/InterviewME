@@ -40,7 +40,14 @@
       <div class="card-layout-question mat-elevation-z8">
         <div class="card-text">
           <div class="text-area-container">
-            <span class="control-title">Category: {{ currentCategory }} Skill: {{ currentSkill }}</span>
+            <div class="title-container">
+              <div>
+                <span class="topic-title">Category: </span><span class="topic-text">{{ currentCategory }}</span>
+              </div>
+              <div>
+                <span class="topic-title"> Skill: </span><span class="topic-text">{{ currentSkill }}</span>
+              </div>
+            </div>
             <textarea class="text-area" readonly rows="15" cdkTextareaAutosize [value]="currentQuestion"></textarea>
           </div>
         </div>

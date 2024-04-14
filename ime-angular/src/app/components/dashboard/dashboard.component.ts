@@ -76,8 +76,8 @@ export class DashboardComponent implements OnInit {
   private stringToArray(str: string) {
     let strArray: string[] = [];
     if (str && str.length > 0) {
-      for (let i = 0; i < str.length; i++) {
-        strArray.push(str[i]);
+      for (const element of str) {
+        strArray.push(element);
       }
     }
     return strArray;
@@ -99,13 +99,18 @@ export class DashboardComponent implements OnInit {
 
   nextQuestion() {
     this.currentCount++;
-    if (this.currentCount <= this.questions.length) {
-      this.showAnswer = false;
+    this.showAnswer = false;
+    if (this.currentCount < this.questions.length) {
       const question = this.questions[this.currentCount];
       this.currentCategory = question.category;
       this.currentSkill = question.skill;
       this.currentQuestion = question.question;
       this.currentAnswer = question.answer;
+    } else {
+      this.currentCategory = "";
+      this.currentSkill = "";
+      this.currentQuestion = "Finished";
+      this.currentAnswer = "";
     }
   }
 
