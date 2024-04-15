@@ -140,12 +140,6 @@ For Example:
 - @Service
 - @Repository - encapsulates storage, retrieval and search of collection of objects'),
         ('SPRING', 'EASY', 'What is Dependency Injection?', 'Objects are not created manually, they are created by an IoC container.'),
-        ('SPRING', 'MEDIUM', 'What are the 5 Bean scopes?', '- singleton (default)
-- request
-- session
-- prototype
-- global session
-To specify scope use the @Scope annotation'),
         ('MICROSERVICES', 'EASY', 'What are some of the key components or ideas that make a component a microservice?', '- Single responsibility
 - Communicate via simple API''s & Queue
 - Deployed independently of other components
@@ -251,4 +245,10 @@ Example:
 - @Pipe'),
         ('ANGULAR', 'EASY', 'What is the Angular CLI', '- Command Line Interface
 - ng starts every command
-- Used on the command line');
+- Used on the command line'),
+        ('SPRING', 'MEDIUM', 'What are the 6 Bean scopes?', '- singleton (default)
+- request
+- session
+- application
+- websocket
+To specify scope use the @Scope annotation');

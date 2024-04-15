@@ -67,7 +67,7 @@ export class DashboardComponent implements OnInit {
     criteria.skills = this.stringToArray(this.selectedSkills);
     this.restService.searchQuestions(criteria)
       .subscribe((result: Question[]) => {
-        this.questions = result;
+        this.questions = this.shuffle(result);
         this.currentCount = -1;
         this.nextQuestion();
       });
@@ -81,6 +81,14 @@ export class DashboardComponent implements OnInit {
       }
     }
     return strArray;
+  }
+
+  private shuffle(questions: Question[]) {
+    for (let i = questions.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [questions[i], questions[j]] = [questions[j], questions[i]];
+    }
+    return questions;
   }
 
   stop() {

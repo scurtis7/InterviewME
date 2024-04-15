@@ -25,10 +25,10 @@
       </div>
     </div>
     <div>
-      <p class="selected-items">Selected Categories: {{ selectedCategories }}</p>
+      <span class="selected-items">Selected Categories: </span><span class="item-text">{{ selectedCategories }}</span>
     </div>
     <div>
-      <p class="selected-items">Selected Skills: {{ selectedSkills }}</p>
+      <span class="selected-items">Selected Skills: </span><span class="item-text">{{ selectedSkills }}</span>
     </div>
   </div>
   <div class="question-layout">
@@ -42,10 +42,10 @@
           <div class="text-area-container">
             <div class="title-container">
               <div>
-                <span class="topic-title">Category: </span><span class="topic-text">{{ currentCategory }}</span>
+                <span class="selected-items">Category: </span><span class="item-text">{{ currentCategory }}</span>
               </div>
               <div>
-                <span class="topic-title"> Skill: </span><span class="topic-text">{{ currentSkill }}</span>
+                <span class="selected-items"> Skill: </span><span class="item-text">{{ currentSkill }}</span>
               </div>
             </div>
             <textarea class="text-area" readonly rows="15" cdkTextareaAutosize [value]="currentQuestion"></textarea>
