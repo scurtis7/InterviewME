@@ -1,7 +1,10 @@
 # InterviewME Application
 
-This is a Spring Boot application with an Angular front end.  The application will quiz you with 
-typical interview questions on various topics.  The plan is to have an Angular and a React front end.
+This application was written to showcase my technical expertise.  Athletes hone their skills by practicing and this project is that for me.  Plus I really enjoy writing software and lets face it, we do side projects to get better at our skill so we can find the best job.  Why not combine the two and write an app to interview yourself.
+
+This is a Spring Boot application with an Angular front end, among other technologies (see tags below).  You can add categories and add questions for the categories.  When you are ready to interview yourself, you pick the categories for the interview and the skill level.  The application will retrieve your questions and randomize the order.  The question is displayed with the answer hidden until you want to see it.
+
+The plan is to add a React front end eventually.  I have a little experience with React but would like to hone that skill as well.
 
 That's the goal anyway.  :)
 
@@ -30,7 +33,7 @@ That's the goal anyway.  :)
 ![Markdown Badge](https://img.shields.io/badge/Markdown-000?logo=markdown&logoColor=fff&style=plastic)
 
 
-# Social
+# Social Links
 
 [![Gmail Badge](https://img.shields.io/badge/Gmail-D14836?style=plastic&logo=gmail&logoColor=white&link=mailto:scurtis7@gmail.com)](mailto:scurtis7@gmail.com)
 [![Linkedin Badge](https://img.shields.io/badge/LinkedIn-0077B5?style=plastic&logo=Linkedin&logoColor=white&link=https://www.linkedin.com/in/steve-curtis-1b6b3937/)](https://www.linkedin.com/in/steve-curtis-1b6b3937/)
