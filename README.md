@@ -4,9 +4,7 @@ Athletes hone their skills by practicing and we can do the same as software engi
 
 This is a Spring Boot application with an Angular front end, among other technologies (see tags below).  You can add categories and add questions for the categories.  When you are ready to interview yourself, you pick the categories for the interview and the skill level.  The application will retrieve your questions and randomize the order.  The question is displayed with the answer hidden until you want to see it.
 
-The plan is to add a React front end eventually.  I have a little experience with React but would like to hone that skill as well.
-
-That's the goal anyway.  :)
+The plan is to add a React front end eventually.  I have a little experience with React but would like to hone that skill as well.  That's the goal anyway.  :)
 
 # Technologies
 
