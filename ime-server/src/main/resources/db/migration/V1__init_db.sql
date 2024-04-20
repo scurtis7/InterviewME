@@ -17,6 +17,6 @@ CREATE TABLE ime.question (
     category VARCHAR(64) NOT NULL,
     skill VARCHAR(8) NOT NULL,
     question VARCHAR(1024) NOT NULL,
-    answer VARCHAR(1024) NOT NULL,
+    answer VARCHAR(2048) NOT NULL,
     created_date DATE DEFAULT CURRENT_DATE
 );

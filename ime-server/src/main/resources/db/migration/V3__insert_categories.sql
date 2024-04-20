@@ -10,4 +10,5 @@ values  ('JAVA'),
         ('DESIGN PATTERNS'),
         ('ANGULAR'),
         ('MAVEN'),
+        ('DEVOPS'),
         ('GRADLE');

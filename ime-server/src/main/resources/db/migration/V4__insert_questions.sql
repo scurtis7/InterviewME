@@ -251,4 +251,85 @@ Example:
 - session
 - application
 - websocket
-To specify scope use the @Scope annotation');
+To specify scope use the @Scope annotation'),
+        ('JAVA', 'MEDIUM', 'What are the features of an Interface?', 'And interface is a template that contains only the signature of methods. The signature of a method consists of the numbers of parameters, the type of parameter (value, reference, or output), and the order of parameters. And interface has no implementation on its own, because it contains only the definition of methods without any method body. And interface is defined using the interface keyword. Moreover, you cannot instantiate an interface. The various features of an interface are as follows:
+•	An interface is used to implement multiple inheritance in code. This feature of an interface is quite different from that of abstract classes, because a class cannot derive the features of more than one class, but can easily implement multiple interfaces.
+•	It defines a specific set of methods and their arguments.
+•	Variables in interface must be declared as public, static, and final, while methods must be public and abstract.
+•	A class implementing an interface must implement all of its methods.
+•	An interface can drive for more than one interface.
+'),
+        ('DEVOPS', 'MEDIUM', 'What are the differences between Continuous Integration, Continuous Delivery, and Continuous Deployment?', '•	Developers practicing continuous integration, merge their changes back to the main branch as often as possible. By doing so, you avoid the integration. Hell that usually happens when people wait for release day to merge their changes into the release branch.
+•	Continuous delivery is an extension of continuous integration to make sure that you can release new changes to your customers quickly in a sustainable way. This means that on top of having automated your testing, you also have automated your release process and you can deploy your application at any point of time by clicking on a button.
+•	Continuous deployment goes one step further than continuous delivery. With this practice, every change that passes all stages of your production pipeline is released your customers. There’s no human intervention, and only a field test will prevent a new change to be deployed to production.
+'),
+        ('JAVA', 'MEDIUM', 'What are the differences between == and equals?', '1) == will never throw a NullPointerException
+   enum Color { BLACK, WHITE };
+
+   Color nothing = null;
+   if (nothing == Color.BLACK)   // runs fine
+   if (nothing.equals(Color.BLACK));  // throws NullPointerException
+
+2) == is subject to type compatibility check at compile time
+
+   enum Color { BLACK, WHITE };
+   enum Position { LEFT, RIGHT };
+
+   if (Color.BLACK.equals(Position.LEFT));   // compiles fine
+   if (Color.BLACK == Position.LEFT);   // Doesn''t compile'),
+        ('JAVA', 'MEDIUM', 'What do the ... dots in the method parameters mean?  For instance if you have this:
+   public void myMethod(String... strings) {
+      // implementation
+   }', 'That feature is called varargs and it means that function can receive multiple String arguments.  For example you could do this with it:
+   for (String theString : strings) {
+   }'),
+        ('SPRING', 'MEDIUM', 'What is a Spring IoC container?', 'The spring IoC creates the objects, wires them together, configures them, and manages their complete lifecycle from creation till destruction. The spring container uses dependency injection (DI) to manage the components that make up an application.'),
+        ('JAVA', 'MEDIUM', 'What is the structure of the Java Heap?', 'The JVM has a heap that is the runtime data area from which memory for all classes instances and arrays are allocated. It is created at the JVM start-up. Heap memory for objects is reclaimed by an automatic memory management system which is known as a garbage collector. Heap memory consists of live and dead objects. Live objects are accessible by the application and will not be subject to garbage collections. Dead objects are those which will never be accessible by the application, but have not been collected by the garbage collector, yet. Such objects occupy the heap memory space until they are eventually collected by the garbage collector.'),
+        ('JAVA', 'MEDIUM', 'What is the volatile keyword useful for?', 'Volatile has semantics for memory, visibility. Basically, the value of a volatile field becomes visible to all readers (other threads in particular) after a right operation completes on it. Without volatile, readers, could see some non-updated value.'),
+        ('SPRING', 'MEDIUM', 'What is Controller in Spring framework?', 'Controllers provide access to the application behavior that you typically define through a service interface. Controllers interpret user input and transform it into a model that is represented to the user by the view. Spring implements a controller in a very abstract way, which enables you to create a wide variety of controllers.'),
+        ('JAVA', 'MEDIUM', 'What is a JavaBean exactly?', 'Basically a JavaBean follows the following standards:
+•	It is a serializable object. Meaning it implements the java.io.serializableinterface.
+•	It has properties whose getters and setters are just methods with certain names
+•	It has a public zero or constructor, so it can be created at wheel and configured by setting its properties
+There is no syntactic difference between a job or being in another class – a class is a JavaBean if it follows the standards
+'),
+        ('JAVA', 'MEDIUM', 'What is the difference between fail-fast and fail-safe for Iterators?', 'The iterators fail – safe property works with the clone of the underlying collection and pass, it is not affected by any modification in the collection. All the collection classes in Java.until package or fail fast, while the collection classes in Java.util.concurrent or fail Dash safe fail fast iterators throw a concurrent modification exception while fail Dash safe iterator never throws such an exception.'),
+        ('JAVA', 'MEDIUM', 'What is the JIT?', 'The JIT is the JVM''s mechanish by which it can optimize code at runtime.
+
+JIT means just in time. It is a central feature of any JVM. Among other optimizations, it can perform code inlining, lock coercing or lock eliding, escape analysis, etc.
+
+The main benefit of the JIT is on the programmers side: code should be written, so that it just works; if the code can be optimized at runtime, more often than not, the JIT will find a way.
+'),
+        ('JAVA', 'HARD', 'Explain the Builder Design Pattern.', 'Need answer...'),
+        ('JAVA', 'HARD', 'Is a null check needed before calling instanceof?', 'No.  It will just return false if the object is null.'),
+        ('MICROSERVICES', 'HARD', 'What are the pros and cons of a Microservice Architecture?', 'Pros
+•	Freedom to use different technologies
+•	Each microservice focuses on a single responsibility
+•	Supports individual deployable units
+•	Allows frequent software releases
+•	Ensures security of each service
+•	Multiple services can be developed and deployed in parallel
+
+
+Cons
+•	Harder to troubleshoot
+•	Remote calls can cause a delay
+•	Increased efforts for configuration
+•	Difficult to maintain transaction safety
+•	Tough to track data across boundaries
+•	Difficult to code between services
+'),
+        ('OOP', 'HARD', 'What is Coupling in OOP?', 'This is when modules are dependent on each other.  Coupling refers to the level of dependency between two software modules.  Two modules are highly dependent on each other if you make a change in one and that causes you to have to make a change in the other.  Loose Coupling is always preferred.
+
+Inversion of Control and Dependency Injection are some techniques for getting loose coupling between modules.'),
+        ('JAVA', 'HARD', 'What is the difference between Serial and Throughput Garbage collector?', 'The throughput garbage collector uses a parallel version of the young generation collector, and is meant to be used with applications that have medium to large data sets. On the other hand, the serial collector is usually adequate for most small applications (those requiring heaps of up to approximately 100 MB on modern processors).'),
+        ('JAVA', 'HARD', 'Why is char[] preferred over String for passwords?', 'A String is subject to the garbage collector, however with a char[] you can overwrite the data at any time.'),
+        ('ANGULAR', 'EASY', 'What is a Routing Guard in Angular?', 'Angular''s route guards are interfaces which can tell the router whether or not it should allow navigation to a requested route.  They make this decision by looking for a true or false return value from a class which implements the given guard interface.
+
+There are 5 different types of guards and each of them is called in a particular sequence.  The guards are:
+•	CanActivate
+•	CanActivateChild
+•	CanDeactivate
+•	CanLoad
+•	Resolve'),
+        ('ANGULAR', 'EASY', 'What is a Module, and what does it contain?', 'And angular module is a set of angular basic building blocks like components, directives, services, etc. An app can have more than one module. A module can be created using the @ngModule decorator.');
