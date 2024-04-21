@@ -1,6 +1,12 @@
 @import "../../../../assets/styles/variables";
 @import "../../../../assets/styles/common";
 
+.question-header-title {
+  display: grid;
+  grid-template-columns: auto auto min-content;
+  grid-template-rows: auto;
+}
+
 .question-button {
   width: 130px;
 }
@@ -53,4 +59,40 @@
 .question-row:hover {
   background-color: $ime-cyan-5;
   cursor: pointer;
+}
+
+.search-content {
+  border-radius: 10px;
+  background-color: $ime-grey-5;
+  height: 40px;
+  width: 245px;
+  justify-self: left;
+  align-self: center;
+  //border: 1px solid red;
+}
+
+.search-input {
+  height: 40px;
+  width: 245px;
+  border-radius: 10px;
+  //border: 1px solid red;
+}
+
+.search-icon {
+  color: $ime-blue-3;
+}
+
+.search-icon-background {
+  background-color: $ime-grey-5;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  //border: 1px solid red;
+}
+
+.search-input-background {
+  background-color: $ime-grey-5;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  border-left: $ime-grey-2 1px solid;
+  //border: 1px solid red;+
 }

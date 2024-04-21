@@ -21,6 +21,9 @@ export class QuestionListComponent implements OnInit {
   displayedColumns: string[] = ['action', 'id', 'category', 'skill', 'question', 'answer'];
   dataSource: MatTableDataSource<Question> = new MatTableDataSource<Question>();
 
+  searchValue = '';
+
+
   constructor(private restService: RestService, private dialog: MatDialog) {
   }
 
@@ -43,6 +46,12 @@ export class QuestionListComponent implements OnInit {
     this.dataSource.sort = this.sort;
   }
 
+  searchEvent(event: Event) {
+    this.searchValue = ((event.target as HTMLInputElement).value).trim().toLowerCase();
+    this.dataSource.filter = this.searchValue;
+    this.dataSource.sort = this.sort;
+  }
+
   displayQuestionDialog(id: number) {
     let question: Question = new Question();
     if (id > 0) {
@@ -50,8 +59,6 @@ export class QuestionListComponent implements OnInit {
     }
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
-    // dialogConfig.height = "4000";
-    // dialogConfig.width = "4000";
     dialogConfig.data = question;
     const dialogRef = this.dialog.open(QuestionComponent, dialogConfig);
     dialogRef.afterClosed().subscribe(result => {

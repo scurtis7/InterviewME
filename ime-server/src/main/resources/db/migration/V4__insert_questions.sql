@@ -1,8 +1,5 @@
 insert into ime.question (category, skill, question, answer)
 values  ('JAVA', 'EASY', 'Can you change the value of a string?', 'No, a string is immutable.  When you change the value of a string a new string object is actually created.'),
-        ('JAVA', 'EASY', 'What is a deadlock?', '- Deadlock - two or more threads wait forever for a lock or resource held by another thread.
-- thread-1 needs lock-1 & lock-2
-- thread-2 needs lock-2 & lock-1'),
         ('JAVA', 'EASY', 'Can you explain what a string buffer and string builder is?', '- Both are mutable
 - StringBuffer
 	- Synchronized (thread safe)
@@ -85,6 +82,9 @@ For Example:
         ('JAVA', 'MEDIUM', 'What is an enum?', '- An enum is a special type that a programmer can define for a collection of constants. It is a special type of Java class.
 - You should use an enum when there is a finite number of possible values for a field or parameter.
 - You can also use an enum for code re-use so you don''t have to define the value over and over when it''s used.'),
+        ('JAVA', 'MEDIUM', 'What is a deadlock?', '- Deadlock - two or more threads wait forever for a lock or resource held by another thread.
+- thread-1 needs lock-1 & lock-2
+- thread-2 needs lock-2 & lock-1'),
         ('JAVA', 'MEDIUM', 'What are java streams? Describe what you know about them.', '- Streams are wrappers around a data source
 - Makes bulk processing convenient and fast
 - They use lambda expressions (functional programming)
@@ -332,4 +332,46 @@ There are 5 different types of guards and each of them is called in a particular
 •	CanDeactivate
 •	CanLoad
 •	Resolve'),
-        ('ANGULAR', 'EASY', 'What is a Module, and what does it contain?', 'And angular module is a set of angular basic building blocks like components, directives, services, etc. An app can have more than one module. A module can be created using the @ngModule decorator.');
+        ('ANGULAR', 'EASY', 'What is a Module, and what does it contain?', 'And angular module is a set of angular basic building blocks like components, directives, services, etc. An app can have more than one module. A module can be created using the @ngModule decorator.'),
+        ('JAVA', 'HARD', 'What are the benefits of using Multithreading?', '•	Allow the program to run continuously even if a part of it is blocked.
+•	Improve performance as compared to traditional parallel programs that use multiple processes.
+•	Allows to write effective programs that utilize maximum CPU time
+•	Improves the responsiveness of complex applications or programs.
+•	Increase use of CPU resources and reduce costs of maintenance.
+•	Saves time and parallelism tasks.
+•	If an exception occurs in a single thread, it will not affect other threads as threads are independent.
+•	Less resource-intensive than executing multiple processes at the same time.
+'),
+        ('JAVA', 'HARD', 'What is a Thread in Java?', 'Threads are basically the lightweight and smallest unit of processing that can be managed independently by a scheduler. Threads are referred to as parts of a process that simply let a program execute efficiently with other parts or threads of the process at the same time. Using threads, one can perform complicated tasks in the easiest way. It is considered the simplest way to take advantage of multiple CPUs available in a machine. They share the common address space and are independent of each other.'),
+        ('JAVA', 'HARD', 'What''s the difference between a thread and process?', 'Thread: It simply refers to the smallest units of the particular process. It has the ability to execute different parts (referred to as thread) of the program at the same time.
+
+Process: It simply refers to a program that is in execution i.e., an active program. A process can be handled using PCB (Process Control Block).
+
+Thread	Process
+It is a subset of a subunit of a process.	It is a program in execution containing multiple threads.
+In this, inter-thread communication is faster, less expensive, easy and efficient because threads share the same memory address of the process they belong to. 	In this, inter-process communication is slower, expensive, and complex because each process has different memory space or address.,
+These are easier to create, lightweight, and have less overhead. 	These are difficult to create, heavyweight, and have more overhead.
+It requires less time for creation, termination, and context switching.	It requires more time for creation, termination, and context switching.
+Processes with multiple threads use fewer resources.	Processes without threads use more resources.
+Threads are parts of a process, so they are dependent on each other but each thread executes independently.	Processes are independent of each other.
+There is a need for synchronization in threads to avoid unexpected scenarios or problems.	There is no need for synchronization in each process.
+They share data and information with each other. 	They do not share data with each other.
+
+'),
+        ('JAVA', 'HARD', 'What are the wait() and sleep() methods?', 'wait(): As the name suggests, it is a non-static method that causes the current thread to wait and go to sleep until some other threads call the notify () or notifyAll() method for the object’s monitor (lock). It simply releases the lock and is mostly used for inter-thread communication. It is defined in the object class, and should only be called from a synchronized context.
+
+sleep(): As the name suggests, it is a static method that pauses or stops the execution of the current thread for some specified period. It doesn’t release the lock while waiting and is mostly used to introduce pause on execution. It is defined in thread class, and no need to call from a synchronized context.  '),
+        ('JAVA', 'HARD', 'Explain the meaning of the deadlock and when it can occur?', 'Deadlock, as the name suggests, is a situation where multiple threads are blocked forever. It generally occurs when multiple threads hold locks on different resources and are waiting for other resources to complete their task.
+
+For example two threads are blocked forever.  Thread 1 is holding Object 1 but needs object 2 to complete processing whereas Thread 2 is holding Object 2 but needs object 1 first. In such conditions, both of them will hold lock forever and will never complete tasks.'),
+        ('JAVA', 'HARD', 'Explain volatile variables in Java?', 'A volatile variable is basically a keyword that is used to ensure and address the visibility of changes to variables in multithreaded programming. This keyword cannot be used with classes and methods, instead can be used with variables. It is simply used to achieve thread-safety. If you mark any variable as volatile, then all the threads can read its value directly from the main memory rather than CPU cache, so that each thread can get an updated value of the variable.'),
+        ('JAVA', 'HARD', 'How do threads communicate with each other?', 'Threads can communicate using three methods i.e., wait(), notify(), and notifyAll().'),
+        ('JAVA', 'HARD', 'Can two threads execute two methods (static and non-static concurrently)?', 'Yes, it is possible. If both the threads acquire locks on different objects, then they can execute concurrently without any problem.'),
+        ('JAVA', 'HARD', 'What will happen if we don''t override the thread class run() method?', 'Nothing will happen if we don’t override the run() method. The compiler will not show any error. It will execute the run() method of thread class and we will just not get any output because the run() method is with an empty implementation.'),
+        ('JAVA', 'HARD', 'Is it possible for each thread to have its own stack in multithreaded programming?', 'Yes. In multithreaded programming, each thread maintains its own separate stack area in memory because each thread is independent of each other rather than dependent.'),
+        ('JAVA', 'HARD', 'Is it possible to call the run() method directly to start a new thread?', 'No, it''s not possible to start a thread. You need to call the start() method to create a new thread otherwise run method won''t create a new thread. Calling the run() method it will behave like a normal method and not start a new thread.'),
+        ('JAVA', 'HARD', 'Explain context switching.', 'Context switching is an important feature of multithreading. It is the process of switching the CPU from one thread or process to another one. It allows multiple processes to share the same CPU. In context switching, the state of a thread or process is stored so that the execution of the thread can be resumed later if required.'),
+        ('JAVA', 'HARD', 'How can we achieve thread safety in Java?', 'There are several ways to achieve thread, safety in Java – synchronization, atomic, concurrent classes, implementing concurrent, lock, interface, using volatile keyword, using immutable classes and thread, safe classes.'),
+        ('JAVA', 'HARD', 'What is more preferred - Synchronized method or Synchronized block?', 'Synchronized block is the more preferred way because it doesn’t lock the object, synchronized methods lock the object.  If there are multiple synchronization blocks in the class, even though they are not related, it will stop them from executing and put them in wait state to get the lock on object.'),
+        ('JAVA', 'HARD', 'What do you mean by the ThreadLocal variable in Java?', 'ThreadLocal variables are special kinds of variables created and provided by the Java ThreadLocal class. These variables are only allowed to be read and written by the same thread. Two threads cannot see each other’s ThreadLocal variable, so even if they execute the same code, then there won''t be any race condition and the code will be thread-safe.'),
+        ('JAVA', 'HARD', 'What is a race condition?', 'A Race condition is a problem which occurs in the multithreaded programming when various threads execute simultaneously accessing a shared resource at the same time. The proper use of synchronization can avoid the Race condition.');
