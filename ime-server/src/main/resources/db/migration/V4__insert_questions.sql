@@ -374,4 +374,22 @@ For example two threads are blocked forever.  Thread 1 is holding Object 1 but n
         ('JAVA', 'HARD', 'How can we achieve thread safety in Java?', 'There are several ways to achieve thread, safety in Java – synchronization, atomic, concurrent classes, implementing concurrent, lock, interface, using volatile keyword, using immutable classes and thread, safe classes.'),
         ('JAVA', 'HARD', 'What is more preferred - Synchronized method or Synchronized block?', 'Synchronized block is the more preferred way because it doesn’t lock the object, synchronized methods lock the object.  If there are multiple synchronization blocks in the class, even though they are not related, it will stop them from executing and put them in wait state to get the lock on object.'),
         ('JAVA', 'HARD', 'What do you mean by the ThreadLocal variable in Java?', 'ThreadLocal variables are special kinds of variables created and provided by the Java ThreadLocal class. These variables are only allowed to be read and written by the same thread. Two threads cannot see each other’s ThreadLocal variable, so even if they execute the same code, then there won''t be any race condition and the code will be thread-safe.'),
-        ('JAVA', 'HARD', 'What is a race condition?', 'A Race condition is a problem which occurs in the multithreaded programming when various threads execute simultaneously accessing a shared resource at the same time. The proper use of synchronization can avoid the Race condition.');
+        ('JAVA', 'HARD', 'What is a race condition?', 'A Race condition is a problem which occurs in the multithreaded programming when various threads execute simultaneously accessing a shared resource at the same time. The proper use of synchronization can avoid the Race condition.'),
+        ('SQL', 'HARD', 'How would you optimize SQL queries?', '* Add missing indexes
+* Check for unused indexes
+* Avoid too many joins
+* Avoid SELECT DISTINCT
+* Use SELECT fields instead of SELECT *
+* Use appropriate data types for columns
+* Avoid subqueries'),
+        ('JAVA', 'HARD', 'What are some ways to tune java performance?', '* Avoid long methods
+* Use Caching where possible
+* Java Concurrency
+* Prefer Java Streams API over for loops
+* Avoid multiple If-Else statements
+* Use primitives instead of Wrapper classes (stack vs heap)
+* Use stored procedures in stead of a long query
+* Avoid unnecessary log statements
+* Select fields instead of Select *
+* Use StringBuilder instead of String concatenation
+* Don''t optimize before you know it''s neccessay');
