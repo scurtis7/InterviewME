@@ -71,8 +71,14 @@
 
 .button-container {
   display: grid;
-  grid-template-columns: 200px 200px;
+  grid-template-columns: 200px 200px auto;
   grid-template-rows: auto;
+}
+
+.question-count {
+  font-size: 18px;
+  color: $ime-blue-3;
+  align-self: center;
 }
 
 .question-container {
@@ -112,6 +118,35 @@
   align-self: center;
   justify-self: center;
   //border: solid 1px red;
+}
+
+.card-buttons {
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-template-rows: auto;
+  //margin-top: 20px;
+}
+
+.previous-button {
+  align-self: center;
+  justify-self: end;
+  margin-right: 20px;
+}
+
+.previous-button-disabled {
+  @extend .previous-button;
+  background-color: $ime-grey-2;
+}
+
+.next-button {
+  align-self: center;
+  justify-self: start;
+  margin-left: 20px;
+}
+
+.next-button-disabled {
+  @extend .next-button;
+  background-color: $ime-grey-2;
 }
 
 .text-area-container {

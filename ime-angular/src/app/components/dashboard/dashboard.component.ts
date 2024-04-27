@@ -105,6 +105,10 @@ export class DashboardComponent implements OnInit {
     this.currentAnswer = "";
   }
 
+  previousQuestion() {
+
+  }
+
   nextQuestion() {
     this.currentCount++;
     this.showAnswer = false;

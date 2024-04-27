@@ -3,7 +3,7 @@
 
 <div class="main-layout">
   <div class="header-container">
-    <span class="header">Select how you want to be interviewed today</span>
+    <span class="header">How do you want to be interviewed today</span>
   </div>
   <div class="selection-layout">
     <div class="dropdown-row">
@@ -35,6 +35,7 @@
     <div class="button-container">
       <button mat-button class="ime-button" (click)="start()">Start</button>
       <button mat-button class="ime-button" (click)="stop()">Stop</button>
+      <span class="question-count" *ngIf="questions.length > 0">Question {{currentCount + 1}} of {{questions.length}}</span>
     </div>
     <div class="question-container">
       <div class="card-layout-question mat-elevation-z8">
@@ -51,8 +52,9 @@
             <textarea class="text-area" readonly rows="15" cdkTextareaAutosize [value]="currentQuestion"></textarea>
           </div>
         </div>
-        <div class="card-button">
-          <button mat-button class="ime-button" (click)="nextQuestion()">Next</button>
+        <div class="card-buttons">
+          <button mat-button class="ime-button previous-button-disabled" (click)="previousQuestion()">Previous</button>
+          <button mat-button class="ime-button next-button-disabled" (click)="nextQuestion()">Next</button>
         </div>
       </div>
       <div class="card-layout-answer mat-elevation-z8">
