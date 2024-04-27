@@ -27,6 +27,8 @@ export class DashboardComponent implements OnInit {
   currentAnswer: string = "";
 
   isLoading = true;
+  prevDisabled = true;
+  nextDisabled = true;
 
   constructor(private restService: RestService) {
   }
@@ -106,23 +108,38 @@ export class DashboardComponent implements OnInit {
   }
 
   previousQuestion() {
-
+    if (this.currentCount > 0) {
+      this.currentCount--;
+    }
+    this.enableDisableButtons();
+    this.setQuestion();
   }
 
   nextQuestion() {
-    this.currentCount++;
+    if (this.currentCount <= this.questions.length) {
+      this.currentCount++;
+    }
+    this.enableDisableButtons();
+    this.setQuestion();
+  }
+
+  private setQuestion() {
     this.showAnswer = false;
-    if (this.currentCount < this.questions.length) {
-      const question = this.questions[this.currentCount];
-      this.currentCategory = question.category;
-      this.currentSkill = question.skill;
-      this.currentQuestion = question.question;
-      this.currentAnswer = question.answer;
-    } else {
-      this.currentCategory = "";
-      this.currentSkill = "";
-      this.currentQuestion = "Finished";
-      this.currentAnswer = "";
+    const question = this.questions[this.currentCount];
+    this.currentCategory = question.category;
+    this.currentSkill = question.skill;
+    this.currentQuestion = question.question;
+    this.currentAnswer = question.answer;
+  }
+
+  private enableDisableButtons() {
+    this.prevDisabled = true;
+    this.nextDisabled = true;
+    if (this.currentCount > 0) {
+      this.prevDisabled = false;
+    }
+    if ((this.currentCount + 1) < this.questions.length) {
+      this.nextDisabled = false;
     }
   }
 

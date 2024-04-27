@@ -53,8 +53,8 @@
           </div>
         </div>
         <div class="card-buttons">
-          <button mat-button class="ime-button previous-button-disabled" (click)="previousQuestion()">Previous</button>
-          <button mat-button class="ime-button next-button-disabled" (click)="nextQuestion()">Next</button>
+          <button mat-button class="ime-button" disabled="{{prevDisabled}}" (click)="previousQuestion()" [ngClass]="{'previous-button': !prevDisabled, 'previous-button-disabled': prevDisabled}">Previous</button>
+          <button mat-button class="ime-button" disabled="{{nextDisabled}}" (click)="nextQuestion()" [ngClass]="{'next-button': !nextDisabled, 'next-button-disabled': nextDisabled}">Next</button>
         </div>
       </div>
       <div class="card-layout-answer mat-elevation-z8">
