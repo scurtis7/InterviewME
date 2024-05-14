@@ -48,7 +48,7 @@ class CategoryConverterTest {
         Category result = converter.toEntity(dto);
 
         assertEquals(1L, result.getId());
-        assertEquals("Java", result.getName());
+        assertEquals("JAVA", result.getName());
 
         verify(converter).toEntity(dto);
     }

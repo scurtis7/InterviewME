@@ -104,6 +104,16 @@
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
                 <version>${jacoco.plugin.version}</version>
+                <configuration>
+                    <excludes>
+                        <exclude>com/scurtis/ime/Application.class</exclude>
+                        <exclude>com/scurtis/ime/config/*</exclude>
+                        <exclude>com/scurtis/ime/dto/*</exclude>
+                        <exclude>com/scurtis/ime/entity/*</exclude>
+                        <exclude>com/scurtis/ime/exception/model/*</exclude>
+                        <exclude>com/scurtis/ime/exception/ImeServerException.class</exclude>
+                    </excludes>
+                </configuration>
                 <executions>
                     <execution>
                         <id>coverage-initialize</id>
@@ -117,16 +127,6 @@
                         <goals>
                             <goal>report</goal>
                         </goals>
-                        <configuration>
-                            <excludes>
-                                <exclude>com/scurtis/ime/Application.class</exclude>
-                                <exclude>com/scurtis/ime/config/*</exclude>
-                                <exclude>com/scurtis/ime/dto/*</exclude>
-                                <exclude>com/scurtis/ime/entity/*</exclude>
-                                <exclude>com/scurtis/ime/exception/model/*</exclude>
-                                <exclude>com/scurtis/ime/exception/ImeServerException.class</exclude>
-                            </excludes>
-                        </configuration>
                     </execution>
                     <!-- Require >80% Coverage -->
                     <execution>
@@ -135,20 +135,22 @@
                             <goal>check</goal>
                         </goals>
                         <configuration>
-                            <excludes>
-                                <exclude>com/scurtis/ime/Application.class</exclude>
-                                <exclude>com/scurtis/ime/config/*</exclude>
-                                <exclude>com/scurtis/ime/dto/*</exclude>
-                                <exclude>com/scurtis/ime/entity/*</exclude>
-                                <exclude>com/scurtis/ime/exception/model/*</exclude>
-                                <exclude>com/scurtis/ime/exception/ImeServerException.class</exclude>
-                            </excludes>
                             <rules>
                                 <rule>
-                                    <element>CLASS</element>
+                                    <element>BUNDLE</element>
                                     <limits>
                                         <limit>
+                                            <counter>BRANCH</counter>
+                                            <value>COVEREDRATIO</value>
+                                            <minimum>80%</minimum>
+                                        </limit>
+                                        <limit>
                                             <counter>LINE</counter>
+                                            <value>COVEREDRATIO</value>
+                                            <minimum>80%</minimum>
+                                        </limit>
+                                        <limit>
+                                            <counter>INSTRUCTION</counter>
                                             <value>COVEREDRATIO</value>
                                             <minimum>80%</minimum>
                                         </limit>
@@ -159,6 +161,7 @@
                     </execution>
                 </executions>
             </plugin>
+
 
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

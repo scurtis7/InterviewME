@@ -3,7 +3,6 @@ package com.scurtis.ime.controller;
 import com.scurtis.ime.dto.CriteriaDto;
 import com.scurtis.ime.dto.QuestionDto;
 import com.scurtis.ime.service.QuestionService;
-import java.util.List;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.MediaType;

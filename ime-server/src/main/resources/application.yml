@@ -1,5 +1,7 @@
-spring:
-  data:
-    r2dbc:
-      repositories:
-        enabled: true
+# Application local properties
+
+#spring:
+#  data:
+#    r2dbc:
+#      repositories:
+#        enabled: true

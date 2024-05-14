@@ -64,12 +64,22 @@ class InterviewControllerTest {
 
     @Test
     void testGetAllSkillLevelsSuccess() {
-        webTestClient.get().uri("/ime/skill_level")
+        webTestClient.get().uri("/ime/skill")
             .exchange()
             .expectStatus().isOk()
             .expectBodyList(SkillLevelDto.class);
 
         verify(mockInterviewService).getAllSkillLevels();
+    }
+
+    @Test
+    void testDeleteCategorySuccess() {
+        webTestClient.delete().uri("/ime/category?name=category")
+            .exchange()
+            .expectStatus().isOk()
+            .expectBodyList(SkillLevelDto.class);
+
+        verify(mockInterviewService).deleteCategoryByName("CATEGORY");
     }
 
     private CategoryDto getCategoryDto() {
