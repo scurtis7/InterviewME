@@ -7,6 +7,7 @@ import { HttpErrorResponse } from "@angular/common/http";
 import { ErrorResponse } from "../../../model/error-response";
 import { MatDialog, MatDialogConfig } from "@angular/material/dialog";
 import { QuestionComponent } from "../question/question.component";
+import { Category } from "../../../model/category";
 
 @Component({
   selector: 'app-question-list',
@@ -17,28 +18,41 @@ export class QuestionListComponent implements OnInit {
 
   @ViewChild(MatSort) sort: MatSort;
 
+  questionsAll: Question[];
   questions: Question[];
   displayedColumns: string[] = ['action', 'id', 'category', 'skill', 'question', 'answer'];
   dataSource: MatTableDataSource<Question> = new MatTableDataSource<Question>();
 
   searchValue = '';
 
+  selectedCategory = 'All';
+  categoryList: Category[];
 
   constructor(private restService: RestService, private dialog: MatDialog) {
   }
 
   ngOnInit(): void {
     this.refreshQuestionList();
+    this.loadCategories();
   }
 
   private refreshQuestionList() {
     this.restService.getQuestions()
       .subscribe(
         (data: Question[]) => {
+          this.questionsAll = data;
           this.questions = data;
+          this.selectCategory();
           this.resetDatasource();
         }
       );
+  }
+
+  private loadCategories() {
+    this.restService.getCategories()
+      .subscribe( (result: Category[]) => {
+        this.categoryList = result;
+      });
   }
 
   private resetDatasource() {
@@ -50,6 +64,14 @@ export class QuestionListComponent implements OnInit {
     this.searchValue = ((event.target as HTMLInputElement).value).trim().toLowerCase();
     this.dataSource.filter = this.searchValue;
     this.dataSource.sort = this.sort;
+  }
+
+  selectCategory() {
+    this.questions = this.questionsAll;
+    if (this.selectedCategory !== 'All') {
+      this.questions = this.questionsAll.filter((question: Question) => question.category === this.selectedCategory);
+    }
+    this.resetDatasource();
   }
 
   displayQuestionDialog(id: number) {

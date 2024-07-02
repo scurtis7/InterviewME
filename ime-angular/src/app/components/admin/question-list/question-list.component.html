@@ -2,6 +2,13 @@
   <div class="question-header-title">
     <span class="card-header-title">Questions</span>
 
+    <div class="dropdown-container">
+      <select class="form-select dropdown-font" (change)="selectCategory();" [(ngModel)]="selectedCategory">
+        <option value="All">All Categories</option>
+        <option *ngFor="let category of categoryList" [value]="category.name">{{category.name}}</option>
+      </select>
+    </div>
+
     <div class="search-content">
       <div class="col-md-6">
         <div class="input-group search-input">

@@ -3,7 +3,7 @@
 
 .question-header-title {
   display: grid;
-  grid-template-columns: auto auto min-content;
+  grid-template-columns: auto auto auto min-content;
   grid-template-rows: auto;
 }
 
@@ -95,4 +95,10 @@
   border-bottom-right-radius: 10px;
   border-left: $ime-grey-2 1px solid;
   //border: 1px solid red;+
+}
+
+.dropdown-container {
+  justify-self: left;
+  align-self: center;
+  width: 200px;
 }
