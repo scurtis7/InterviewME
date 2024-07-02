@@ -24,6 +24,7 @@ export class QuestionListComponent implements OnInit {
   dataSource: MatTableDataSource<Question> = new MatTableDataSource<Question>();
 
   searchValue = '';
+  recordCount = 0;
 
   selectedCategory = 'All';
   categoryList: Category[];
@@ -56,6 +57,7 @@ export class QuestionListComponent implements OnInit {
   }
 
   private resetDatasource() {
+    this.recordCount = this.questions.length;
     this.dataSource.data = this.questions;
     this.dataSource.sort = this.sort;
   }
