@@ -1,1 +1,4 @@
-INSERT INTO ime.skill_level(name) VALUES ('EASY'), ('MEDIUM'), ('HARD');
+INSERT INTO ime.skill_level(name)
+VALUES ('EASY'),
+       ('MEDIUM'),
+       ('HARD');

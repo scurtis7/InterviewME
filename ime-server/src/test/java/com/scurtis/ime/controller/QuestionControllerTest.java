@@ -6,34 +6,40 @@ import com.scurtis.ime.service.QuestionService;
 import java.time.LocalDate;
 import java.util.List;
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.reactive.WebFluxTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
+import org.mockito.Mock;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.reactive.server.WebTestClient;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(SpringExtension.class)
-@WebFluxTest(controllers = QuestionController.class)
 class QuestionControllerTest {
 
-    @MockBean
-    private QuestionService mockQuestionService;
-
-    @Autowired
+    private QuestionController questionController;
     private WebTestClient webTestClient;
 
+    @Mock
+    private QuestionService questionServiceMock;
+
+    @BeforeEach
+    void beforeEachTest() {
+        questionController = spy(new QuestionController(questionServiceMock));
+        webTestClient = WebTestClient.bindToController(questionController).build();
+    }
+
     @AfterEach
-    void afterEach() {
-        verifyNoMoreInteractions(mockQuestionService);
+    void afterEachTest() {
+        verifyNoMoreInteractions(questionServiceMock);
+        verifyNoMoreInteractions(questionController);
     }
 
     @Test
@@ -41,7 +47,7 @@ class QuestionControllerTest {
         QuestionDto body = getQuestionDto();
         Mono<QuestionDto> monoQuestionDto = Mono.just(body);
 
-        when(mockQuestionService.addQuestion(body)).thenReturn(monoQuestionDto);
+        when(questionServiceMock.addQuestion(body)).thenReturn(monoQuestionDto);
 
         webTestClient.post().uri("/ime/question")
             .accept(MediaType.APPLICATION_JSON)
@@ -51,7 +57,8 @@ class QuestionControllerTest {
             .expectBody(QuestionDto.class)
             .isEqualTo(body);
 
-        verify(mockQuestionService).addQuestion(body);
+        verify(questionServiceMock).addQuestion(body);
+        verify(questionController).addQuestion(body);
     }
 
     @Test
@@ -61,7 +68,8 @@ class QuestionControllerTest {
             .expectStatus().isOk()
             .expectBodyList(QuestionDto.class);
 
-        verify(mockQuestionService).getAllQuestions();
+        verify(questionServiceMock).getAllQuestions();
+        verify(questionController).getAllQuestions();
     }
 
     @Test
@@ -69,7 +77,7 @@ class QuestionControllerTest {
         CriteriaDto body = getCriteriaDto();
         Flux<QuestionDto> questionDtoFlux = Flux.just(getQuestionDto());
 
-        when(mockQuestionService.searchQuestions(body)).thenReturn(questionDtoFlux);
+        when(questionServiceMock.searchQuestions(body)).thenReturn(questionDtoFlux);
 
         webTestClient.post().uri("/ime/question/search")
             .accept(MediaType.APPLICATION_JSON)
@@ -78,7 +86,8 @@ class QuestionControllerTest {
             .expectStatus().isOk()
             .expectBodyList(QuestionDto.class);
 
-        verify(mockQuestionService).searchQuestions(body);
+        verify(questionServiceMock).searchQuestions(body);
+        verify(questionController).searchQuestions(body);
     }
 
     @Test
@@ -88,7 +97,8 @@ class QuestionControllerTest {
             .expectStatus().isOk()
             .expectBody(Void.class);
 
-        verify(mockQuestionService).deleteQuestion(1L);
+        verify(questionServiceMock).deleteQuestion(1L);
+        verify(questionController).deleteQuestion(1L);
     }
 
     private QuestionDto getQuestionDto() {

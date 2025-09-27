@@ -5,33 +5,38 @@ import com.scurtis.ime.dto.SkillLevelDto;
 import com.scurtis.ime.service.InterviewService;
 import java.time.LocalDate;
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.reactive.WebFluxTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
+import org.mockito.Mock;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.reactive.server.WebTestClient;
 import reactor.core.publisher.Mono;
 
+import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(SpringExtension.class)
-@WebFluxTest(controllers = InterviewController.class)
 class InterviewControllerTest {
 
-    @MockBean
-    private InterviewService mockInterviewService;
-
-    @Autowired
+    private InterviewController interviewController;
     private WebTestClient webTestClient;
 
+    @Mock
+    private InterviewService interviewServiceMock;
+
+    @BeforeEach
+    void beforeEachTest() {
+        interviewController = spy(new InterviewController(interviewServiceMock));
+        webTestClient = WebTestClient.bindToController(interviewController).build();
+    }
+
     @AfterEach
-    void afterEach() {
-        verifyNoMoreInteractions(mockInterviewService);
+    void afterEachTest() {
+        verifyNoMoreInteractions(interviewServiceMock);
     }
 
     @Test
@@ -39,7 +44,7 @@ class InterviewControllerTest {
         CategoryDto body = getCategoryDto();
         Mono<CategoryDto> monoCategoryDto = Mono.just(body);
 
-        when(mockInterviewService.saveCategory(body)).thenReturn(monoCategoryDto);
+        when(interviewServiceMock.saveCategory(body)).thenReturn(monoCategoryDto);
 
         webTestClient.post().uri("/ime/category")
             .accept(MediaType.APPLICATION_JSON)
@@ -49,7 +54,8 @@ class InterviewControllerTest {
             .expectBody(CategoryDto.class)
             .isEqualTo(body);
 
-        verify(mockInterviewService).saveCategory(body);
+        verify(interviewServiceMock).saveCategory(body);
+        verify(interviewController).addCategory(body);
     }
 
     @Test
@@ -59,7 +65,8 @@ class InterviewControllerTest {
             .expectStatus().isOk()
             .expectBodyList(CategoryDto.class);
 
-        verify(mockInterviewService).getAllCategories();
+        verify(interviewServiceMock).getAllCategories();
+        verify(interviewController).getAllCategories();
     }
 
     @Test
@@ -69,7 +76,8 @@ class InterviewControllerTest {
             .expectStatus().isOk()
             .expectBodyList(SkillLevelDto.class);
 
-        verify(mockInterviewService).getAllSkillLevels();
+        verify(interviewServiceMock).getAllSkillLevels();
+        verify(interviewController).getAllSkillLevels();
     }
 
     @Test
@@ -79,7 +87,8 @@ class InterviewControllerTest {
             .expectStatus().isOk()
             .expectBodyList(SkillLevelDto.class);
 
-        verify(mockInterviewService).deleteCategoryByName("CATEGORY");
+        verify(interviewServiceMock).deleteCategoryByName("CATEGORY");
+        verify(interviewController).deleteCategory("category");
     }
 
     private CategoryDto getCategoryDto() {

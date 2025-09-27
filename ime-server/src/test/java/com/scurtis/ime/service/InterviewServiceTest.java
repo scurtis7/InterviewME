@@ -6,9 +6,9 @@ import com.scurtis.ime.dto.CategoryDto;
 import com.scurtis.ime.dto.SkillLevelDto;
 import com.scurtis.ime.entity.Category;
 import com.scurtis.ime.entity.SkillLevel;
+import com.scurtis.ime.exception.ImeServerException;
 import com.scurtis.ime.repository.CategoryRepository;
 import com.scurtis.ime.repository.SkillLevelRepository;
-import java.time.LocalDate;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -19,7 +19,15 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 import reactor.test.StepVerifier;
 
+import static com.scurtis.ime.TestUtils.CATEGORY_ID;
+import static com.scurtis.ime.TestUtils.CATEGORY_NAME;
+import static com.scurtis.ime.TestUtils.SKILL_LEVEL_NAME;
+import static com.scurtis.ime.TestUtils.getCategoryDto;
+import static com.scurtis.ime.TestUtils.getCategoryEntity;
+import static com.scurtis.ime.TestUtils.getSkillLevelDto;
+import static com.scurtis.ime.TestUtils.getSkillLevelEntity;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.verify;
@@ -32,25 +40,25 @@ class InterviewServiceTest {
     private InterviewService interviewService;
 
     @Mock
-    private CategoryRepository mockCategoryRepository;
+    private CategoryRepository categoryRepositoryMock;
     @Mock
-    private CategoryConverter mockCategoryConverter;
+    private CategoryConverter categoryConverterMock;
     @Mock
-    private SkillLevelRepository mockSkillLevelRepository;
+    private SkillLevelRepository skillLevelRepositoryMock;
     @Mock
-    private SkillLevelConverter mockSkillLevelConverter;
+    private SkillLevelConverter skillLevelConverterMock;
 
     @BeforeEach
-    void beforeEach() {
-        interviewService = spy(new InterviewService(mockCategoryRepository, mockCategoryConverter, mockSkillLevelRepository, mockSkillLevelConverter));
+    void beforeEachTest() {
+        interviewService = spy(new InterviewService(categoryRepositoryMock, categoryConverterMock, skillLevelRepositoryMock, skillLevelConverterMock));
     }
 
     @AfterEach
-    void afterEach() {
-        verifyNoMoreInteractions(mockCategoryRepository);
-        verifyNoMoreInteractions(mockCategoryConverter);
-        verifyNoMoreInteractions(mockSkillLevelRepository);
-        verifyNoMoreInteractions(mockSkillLevelConverter);
+    void afterEachTest() {
+        verifyNoMoreInteractions(categoryRepositoryMock);
+        verifyNoMoreInteractions(categoryConverterMock);
+        verifyNoMoreInteractions(skillLevelRepositoryMock);
+        verifyNoMoreInteractions(skillLevelConverterMock);
         verifyNoMoreInteractions(interviewService);
     }
 
@@ -59,23 +67,33 @@ class InterviewServiceTest {
         Category entity = getCategoryEntity();
         CategoryDto dto = getCategoryDto();
 
-        when(mockCategoryRepository.save(entity)).thenReturn(Mono.just(entity));
-        when(mockCategoryConverter.toEntity(dto)).thenReturn(entity);
-        when(mockCategoryConverter.toDto(entity)).thenReturn(dto);
+        when(categoryRepositoryMock.save(entity)).thenReturn(Mono.just(entity));
+        when(categoryConverterMock.toEntity(dto)).thenReturn(entity);
+        when(categoryConverterMock.toDto(entity)).thenReturn(dto);
 
         Mono<CategoryDto> result = interviewService.saveCategory(dto);
 
         StepVerifier.create(result)
             .thenConsumeWhile(categoryDto -> {
-                assertEquals(1L, categoryDto.getId());
-                assertEquals("Java", categoryDto.getName());
+                assertEquals(CATEGORY_ID, categoryDto.getId());
+                assertEquals(CATEGORY_NAME, categoryDto.getName());
                 return true;
             })
             .verifyComplete();
 
-        verify(mockCategoryRepository).save(entity);
-        verify(mockCategoryConverter).toEntity(dto);
-        verify(mockCategoryConverter).toDto(entity);
+        verify(categoryRepositoryMock).save(entity);
+        verify(categoryConverterMock).toEntity(dto);
+        verify(categoryConverterMock).toDto(entity);
+        verify(interviewService).saveCategory(dto);
+    }
+
+    @Test
+    void testSaveCategoryWithNullDtoThrowsException() {
+        CategoryDto dto = getCategoryDto();
+        dto.setName(null);
+        Throwable result = assertThrows(ImeServerException.class, () -> interviewService.saveCategory(dto));
+
+        assertEquals("Category may not be blank", result.getMessage());
         verify(interviewService).saveCategory(dto);
     }
 
@@ -84,21 +102,41 @@ class InterviewServiceTest {
         Category entity = getCategoryEntity();
         CategoryDto dto = getCategoryDto();
 
-        when(mockCategoryRepository.findAll()).thenReturn(Flux.just(entity));
-        when(mockCategoryConverter.toDto(entity)).thenReturn(dto);
+        when(categoryRepositoryMock.findAll()).thenReturn(Flux.just(entity));
+        when(categoryConverterMock.toDto(entity)).thenReturn(dto);
 
         Flux<CategoryDto> result = interviewService.getAllCategories();
 
         StepVerifier.create(result)
             .thenConsumeWhile(categoryDto -> {
-                assertEquals("Java", categoryDto.getName());
+                assertEquals(CATEGORY_NAME, categoryDto.getName());
                 return true;
             })
             .verifyComplete();
 
-        verify(mockCategoryRepository).findAll();
-        verify(mockCategoryConverter).toDto(any());
+        verify(categoryRepositoryMock).findAll();
+        verify(categoryConverterMock).toDto(any());
         verify(interviewService).getAllCategories();
+    }
+
+    @Test
+    void testDeleteCategorySuccess() {
+        Category entity = getCategoryEntity();
+
+        when(categoryRepositoryMock.deleteCategoryByName(CATEGORY_NAME)).thenReturn(Mono.just(entity));
+
+        Mono<Category> result = interviewService.deleteCategoryByName(CATEGORY_NAME);
+
+        StepVerifier.create(result)
+            .thenConsumeWhile(category -> {
+                assertEquals(CATEGORY_ID, category.getId());
+                assertEquals(CATEGORY_NAME, category.getName());
+                return true;
+            })
+            .verifyComplete();
+
+        verify(categoryRepositoryMock).deleteCategoryByName(CATEGORY_NAME);
+        verify(interviewService).deleteCategoryByName(CATEGORY_NAME);
     }
 
     @Test
@@ -106,37 +144,21 @@ class InterviewServiceTest {
         SkillLevel entity = getSkillLevelEntity();
         SkillLevelDto dto = getSkillLevelDto();
 
-        when(mockSkillLevelRepository.findAll()).thenReturn(Flux.just(entity));
-        when(mockSkillLevelConverter.toDto(entity)).thenReturn(dto);
+        when(skillLevelRepositoryMock.findAll()).thenReturn(Flux.just(entity));
+        when(skillLevelConverterMock.toDto(entity)).thenReturn(dto);
 
         Flux<SkillLevelDto> result = interviewService.getAllSkillLevels();
 
         StepVerifier.create(result)
             .thenConsumeWhile(skillLevelDto -> {
-                assertEquals("Easy", skillLevelDto.getName());
+                assertEquals(SKILL_LEVEL_NAME, skillLevelDto.getName());
                 return true;
             })
             .verifyComplete();
 
-        verify(mockSkillLevelRepository).findAll();
-        verify(mockSkillLevelConverter).toDto(any());
+        verify(skillLevelRepositoryMock).findAll();
+        verify(skillLevelConverterMock).toDto(any());
         verify(interviewService).getAllSkillLevels();
-    }
-
-    private Category getCategoryEntity() {
-        return new Category(null, "Java", null);
-    }
-
-    private CategoryDto getCategoryDto() {
-        return new CategoryDto(1L, "Java", LocalDate.now());
-    }
-
-    private SkillLevel getSkillLevelEntity() {
-        return new SkillLevel(1L, "Easy", LocalDate.now());
-    }
-
-    private SkillLevelDto getSkillLevelDto() {
-        return new SkillLevelDto(1L, "Easy", LocalDate.now());
     }
 
 }

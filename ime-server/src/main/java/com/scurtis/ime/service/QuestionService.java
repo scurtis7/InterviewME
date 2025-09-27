@@ -5,7 +5,6 @@ import com.scurtis.ime.dto.CriteriaDto;
 import com.scurtis.ime.dto.QuestionDto;
 import com.scurtis.ime.exception.ImeServerException;
 import com.scurtis.ime.repository.QuestionRepository;
-import java.util.List;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -42,12 +41,12 @@ public class QuestionService {
 
     public Flux<QuestionDto> searchQuestions(CriteriaDto dto) {
         log.info("QuestionService.searchQuestions()");
-        if (dto.getCategories().isEmpty() && dto.getSkills().isEmpty()) {
+        if ((dto.getCategories() == null || dto.getCategories().isEmpty()) && (dto.getSkills() == null || dto.getSkills().isEmpty())) {
             return Flux.empty();
-        } else if (dto.getCategories().isEmpty()) {
+        } else if (dto.getCategories() == null || dto.getCategories().isEmpty()) {
             return repository.searchQuestionsBySkill(dto.getSkills())
                 .map(converter::toDto);
-        } else if (dto.getSkills().isEmpty()) {
+        } else if (dto.getSkills() == null || dto.getSkills().isEmpty()) {
             return repository.searchQuestionsByCategory(dto.getCategories())
                 .map(converter::toDto);
         } else {
