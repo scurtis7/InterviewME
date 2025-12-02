@@ -58,6 +58,7 @@
   color: $ime-purple-5;
 }
 
+// Question & Answer Section
 .question-layout {
   margin: 5px;
   border: 1px solid $ime-grey-3;
@@ -81,50 +82,29 @@
   align-self: center;
 }
 
-.question-container {
-  display: grid;
-  grid-template-columns: 600px 600px;
-  grid-template-rows: 400px;
-}
-
-.card-layout {
+.question-answer-container {
   display: grid;
   grid-template-columns: auto;
-  grid-template-rows: 300px 70px;
+  grid-template-rows: auto auto;
+  //border: 1px solid red;
+}
+
+// Question Section
+.card-layout-question {
+  display: grid;
+  grid-template-columns: auto;
+  grid-template-rows: auto auto;
   margin-top: 20px;
   border: solid 1px $ime-grey-3;
   border-radius: 10px;
   font-size: 18px;
   color: $ime-blue-3;
   padding: 15px;
+  //border: 1px solid red;
 }
 
-.card-layout-question {
-  @extend .card-layout;
-  margin-right: 25px;
-}
-
-.card-layout-answer {
-  @extend .card-layout;
-  margin-left: 25px;
-}
-
-.card-text {
-  //border: solid 1px red;
-}
-
-.card-button {
-  display: flex;
-  align-self: center;
-  justify-self: center;
-  //border: solid 1px red;
-}
-
-.card-buttons {
-  display: grid;
-  grid-template-columns: auto auto;
-  grid-template-rows: auto;
-  //margin-top: 20px;
+.question-buttons {
+  margin-top: 10px;
 }
 
 .previous-button {
@@ -149,23 +129,49 @@
   background-color: $ime-grey-2;
 }
 
-.text-area-container {
+.question-container {
   display: grid;
   grid-template-columns: auto;
   grid-template-rows: auto auto;
-  margin-top: 10px;
+  //border: solid 1px red;
 }
 
 .title-container {
   display: grid;
   grid-template-columns: 250px 250px;
   grid-template-rows: auto;
+  margin-bottom: 10px;
+  //border: solid 1px red;
 }
 
-.text-area {
-  height: 15em !important;
+.text-area-question {
+  height: 3em !important;
+  //border: solid 1px red;
 }
 
+// Answer Section
+.card-layout-answer {
+  display: grid;
+  grid-template-columns: auto;
+  grid-template-rows: auto 300px;
+  margin-top: 20px;
+  border: solid 1px $ime-grey-3;
+  border-radius: 10px;
+  font-size: 18px;
+  color: $ime-blue-3;
+  padding: 15px;
+}
 
+.answer-container {
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: auto;
+  grid-template-rows: auto auto;
+  //border: solid 1px red;
+}
 
+.text-area-answer {
+  height: 14em !important;
+  //border: solid 1px red;
+}
 

@@ -25,49 +25,47 @@
       </div>
     </div>
     <div>
-      <span class="selected-items">Selected Categories: </span><span class="item-text">{{ selectedCategories }}</span>
+      <span class="selected-items">Categories: </span><span class="item-text">{{ selectedCategories }}</span>
     </div>
     <div>
-      <span class="selected-items">Selected Skills: </span><span class="item-text">{{ selectedSkills }}</span>
+      <span class="selected-items">Skills: </span><span class="item-text">{{ selectedSkills }}</span>
     </div>
   </div>
   <div class="question-layout">
     <div class="button-container">
       <button mat-button class="ime-button" (click)="start()">Start</button>
       <button mat-button class="ime-button" (click)="stop()">Stop</button>
-      <span class="question-count" *ngIf="questions.length > 0">Question {{currentCount + 1}} of {{questions.length}}</span>
+      <span class="question-count" *ngIf="questions.length > 0">Question {{ currentCount + 1 }} of {{ questions.length }}</span>
     </div>
-    <div class="question-container">
+    <div class="question-answer-container">
       <div class="card-layout-question mat-elevation-z8">
-        <div class="card-text">
-          <div class="text-area-container">
-            <div class="title-container">
-              <div>
-                <span class="selected-items">Category: </span><span class="item-text">{{ currentCategory }}</span>
-              </div>
-              <div>
-                <span class="selected-items"> Skill: </span><span class="item-text">{{ currentSkill }}</span>
-              </div>
+        <div class="question-container">
+          <div class="title-container">
+            <div>
+              <span class="selected-items">Category: </span><span class="item-text">{{ currentCategory }}</span>
             </div>
-            <textarea class="text-area" readonly rows="15" cdkTextareaAutosize [value]="currentQuestion"></textarea>
+            <div>
+              <span class="selected-items"> Skill: </span><span class="item-text">{{ currentSkill }}</span>
+            </div>
           </div>
+          <textarea class="text-area-question" readonly rows="15" cdkTextareaAutosize [value]="currentQuestion"></textarea>
         </div>
-        <div class="card-buttons">
-          <button mat-button class="ime-button" disabled="{{prevDisabled}}" (click)="previousQuestion()" [ngClass]="{'previous-button': !prevDisabled, 'previous-button-disabled': prevDisabled}">Previous</button>
-          <button mat-button class="ime-button" disabled="{{nextDisabled}}" (click)="nextQuestion()" [ngClass]="{'next-button': !nextDisabled, 'next-button-disabled': nextDisabled}">Next</button>
+        <div class="question-buttons">
+          <button mat-button class="ime-button" disabled="{{prevDisabled}}" (click)="previousQuestion()" [ngClass]="{'previous-button': !prevDisabled, 'previous-button-disabled': prevDisabled}">
+            Previous
+          </button>
+          <button mat-button class="ime-button" disabled="{{nextDisabled}}" (click)="nextQuestion()" [ngClass]="{'next-button': !nextDisabled, 'next-button-disabled': nextDisabled}">
+            Next
+          </button>
         </div>
       </div>
       <div class="card-layout-answer mat-elevation-z8">
-        <div class="card-text">
-          <div class="text-area-container" *ngIf="showAnswer">
-            <span class="control-title">Answer</span>
-            <textarea class="text-area" readonly rows="15" cdkTextareaAutosize [value]="currentAnswer"></textarea>
-          </div>
-        </div>
-        <div class="card-button">
-          <button mat-button class="ime-button" (click)="toggleShowAnswer()">Flip</button>
+        <button mat-button class="ime-button" (click)="toggleShowAnswer()">Flip</button>
+        <div class="answer-container" *ngIf="showAnswer">
+          <span class="control-title">Answer</span>
+          <textarea class="text-area-answer" readonly rows="15" cdkTextareaAutosize [value]="currentAnswer"></textarea>
         </div>
       </div>
     </div>
-    </div>
+  </div>
 </div>
