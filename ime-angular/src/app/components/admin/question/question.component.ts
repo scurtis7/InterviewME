@@ -4,6 +4,7 @@ import { Category } from "../../../model/category";
 import { Skill } from "../../../model/skill";
 import { RestService } from "../../../service/rest.service";
 import { Question } from "../../../model/question";
+import { CacheService } from "../../../service/cache.service";
 
 @Component({
   selector: 'app-question',
@@ -21,7 +22,7 @@ export class QuestionComponent implements OnInit {
   skills: string[];
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: Question, private restService: RestService,
-              public dialogRef: MatDialogRef<QuestionComponent>) {
+              private cacheService: CacheService, public dialogRef: MatDialogRef<QuestionComponent>) {
     if (data.id) {
       this.title = "Edit Question";
       this.selectedCategory = data.category;
@@ -34,6 +35,7 @@ export class QuestionComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.selectedCategory = this.cacheService.getSelectedCategory();
     this.loadCategories();
     this.loadSkills();
   }
@@ -72,6 +74,10 @@ export class QuestionComponent implements OnInit {
           }
         }
       );
+  }
+
+  public cacheCategory(): void {
+    this.cacheService.setSelectedCategory(this.selectedCategory);
   }
 
 }

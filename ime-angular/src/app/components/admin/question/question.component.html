@@ -4,7 +4,7 @@
     <div class="dropdown-container">
       <div class="select-container">
         <span class="control-title">Category</span>
-        <select class="dropdown-font" [(ngModel)]="selectedCategory">
+        <select class="dropdown-font" [(ngModel)]="selectedCategory" (click)="cacheCategory()">
           <option *ngFor="let category of categories" [value]="category">{{category}}</option>
         </select>
       </div>
@@ -18,11 +18,11 @@
     </div>
     <div class="text-area-container">
       <span class="control-title">Question</span>
-      <textarea class="text-area" rows="6" cdkTextareaAutosize [(ngModel)]="question"></textarea>
+      <textarea class="text-area-question" rows="6" cdkTextareaAutosize [(ngModel)]="question"></textarea>
     </div>
     <div class="text-area-container">
       <span class="control-title">Answer</span>
-      <textarea class="text-area" rows="6" cdkTextareaAutosize [(ngModel)]="answer"></textarea>
+      <textarea class="text-area-answer" rows="6" cdkTextareaAutosize [(ngModel)]="answer"></textarea>
     </div>
   </div>
 </div>

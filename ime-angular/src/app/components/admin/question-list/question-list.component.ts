@@ -84,6 +84,8 @@ export class QuestionListComponent implements OnInit {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.data = question;
+    dialogConfig.width = '800px';
+    dialogConfig.height = '500px';
     const dialogRef = this.dialog.open(QuestionComponent, dialogConfig);
     dialogRef.afterClosed().subscribe(result => {
         console.log(`Result returned from dialog is: ${result}`);
