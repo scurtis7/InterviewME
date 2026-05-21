@@ -35,7 +35,9 @@ export class QuestionComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.selectedCategory = this.cacheService.getSelectedCategory();
+    if (this.title === 'New Question') {
+      this.selectedCategory = this.cacheService.getSelectedCategory();
+    }
     this.loadCategories();
     this.loadSkills();
   }
